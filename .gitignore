@@ -1,0 +1,15 @@
+*.log
+*.pyc
+.DS_Store
+.claude/
+.env
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+__pycache__/
+dados/checkpoints.db
+dados/checkpoints.db*
+dados/historico_conversas.db
+dados/memoria.db
+logs/
+relatorio/relatorio.html

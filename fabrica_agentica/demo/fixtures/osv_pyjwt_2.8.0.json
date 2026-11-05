@@ -1,0 +1,365 @@
+{
+ "pacote": "pyjwt",
+ "versao": "2.8.0",
+ "total": 28,
+ "vulnerabilidades": [
+  {
+   "id": "GHSA-ffc3-869f-jxw9",
+   "aliases": [
+    "CVE-2026-102268",
+    "PYSEC-2026-4145"
+   ],
+   "resumo": "PyJWT: Asymmetric-PEM detection bypass: whitespace/line-ending-mutated public keys skip the HS/asymmetric confusion guard",
+   "cvss": 9.1,
+   "severidade_rotulo": "CRITICAL",
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4145",
+   "aliases": [
+    "CVE-2026-102268",
+    "GHSA-ffc3-869f-jxw9"
+   ],
+   "resumo": "PyJWT: Asymmetric-PEM detection bypass: whitespace/line-ending-mutated public keys skip the HS/asymmetric confusion guard",
+   "cvss": 9.1,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4183",
+   "aliases": [
+    "CVE-2026-102275",
+    "GHSA-x33g-cr3x-6449"
+   ],
+   "resumo": "",
+   "cvss": 8.2,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.15.0"
+   ]
+  },
+  {
+   "id": "GHSA-752w-5fwx-jx9f",
+   "aliases": [
+    "CVE-2026-32597",
+    "PYSEC-2026-120"
+   ],
+   "resumo": "PyJWT accepts unknown `crit` header extensions",
+   "cvss": 7.5,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "2.12.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-120",
+   "aliases": [
+    "CVE-2026-32597",
+    "GHSA-752w-5fwx-jx9f"
+   ],
+   "resumo": "",
+   "cvss": 7.5,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.12.0"
+   ]
+  },
+  {
+   "id": "GHSA-9v7f-9g4p-ffgj",
+   "aliases": [
+    "CVE-2026-102267",
+    "PYSEC-2026-4144"
+   ],
+   "resumo": "PyJWT: PyJWKClient follows redirects when fetching JWKS",
+   "cvss": 7.4,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "GHSA-p4g4-x82p-q773",
+   "aliases": [
+    "CVE-2026-102271",
+    "PYSEC-2026-4149"
+   ],
+   "resumo": "PyJWT: Public keys in DER form are accepted as HMAC secrets, bypassing the CVE-2022-29217 guard",
+   "cvss": 7.4,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "GHSA-pxh4-856f-4h89",
+   "aliases": [],
+   "resumo": "PyJWT: HS256/384/512 verify accepts empty HMAC key via oct JWK (PyJWK/PyJWKClient) enabling token forgery",
+   "cvss": 7.4,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "GHSA-xgmm-8j9v-c9wx",
+   "aliases": [
+    "CVE-2026-48526",
+    "PYSEC-2026-179"
+   ],
+   "resumo": "PyJWT: Public-key JWK accepted as HMAC secret enables forged HS256 tokens when mixed families are allowed",
+   "cvss": 7.4,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "2.13.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-179",
+   "aliases": [
+    "CVE-2026-48526",
+    "GHSA-xgmm-8j9v-c9wx"
+   ],
+   "resumo": "",
+   "cvss": 7.4,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.13.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4144",
+   "aliases": [
+    "CVE-2026-102267",
+    "GHSA-9v7f-9g4p-ffgj"
+   ],
+   "resumo": "PyJWT: PyJWKClient follows redirects when fetching JWKS",
+   "cvss": 7.4,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4149",
+   "aliases": [
+    "CVE-2026-102271",
+    "GHSA-p4g4-x82p-q773"
+   ],
+   "resumo": "PyJWT: Public keys in DER form are accepted as HMAC secrets, bypassing the CVE-2022-29217 guard",
+   "cvss": 7.4,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2025-183",
+   "aliases": [
+    "CVE-2025-45768"
+   ],
+   "resumo": "",
+   "cvss": 7.0,
+   "severidade_rotulo": null,
+   "corrigida_em": []
+  },
+  {
+   "id": "GHSA-x33g-cr3x-6449",
+   "aliases": [
+    "CVE-2026-102275",
+    "PYSEC-2026-4183"
+   ],
+   "resumo": "PyJWT accepts inconsistent OKP x/d JWKs, causing public/private key identity confusion",
+   "cvss": 6.5,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "2.15.0"
+   ]
+  },
+  {
+   "id": "GHSA-2gx3-rcp4-g85q",
+   "aliases": [
+    "CVE-2026-101917",
+    "PYSEC-2026-4140"
+   ],
+   "resumo": "PyJWT: PyJWKClient still amplifies unauthenticated JWKS fetches on unknown kid values (incomplete fix of CVE-2026-48524)",
+   "cvss": 5.3,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "GHSA-42vr-xj54-vc7v",
+   "aliases": [
+    "CVE-2026-101918",
+    "PYSEC-2026-4141"
+   ],
+   "resumo": "PyJWT: Unauthenticated RecursionError DoS in pre-verification payload parse (PyJWKClient.get_signing_key_from_jwt / verify_signature=False)",
+   "cvss": 5.3,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "2.15.0"
+   ]
+  },
+  {
+   "id": "GHSA-w7vc-732c-9m39",
+   "aliases": [
+    "CVE-2026-48525",
+    "PYSEC-2026-178"
+   ],
+   "resumo": "PyJWT: Unauthenticated DoS via unbounded Base64URL decoding of unused payload segment in b64=false detached JWS",
+   "cvss": 5.3,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "2.13.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-178",
+   "aliases": [
+    "CVE-2026-48525",
+    "GHSA-w7vc-732c-9m39"
+   ],
+   "resumo": "",
+   "cvss": 5.3,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.13.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4140",
+   "aliases": [
+    "CVE-2026-101917",
+    "GHSA-2gx3-rcp4-g85q"
+   ],
+   "resumo": "PyJWT: PyJWKClient still amplifies unauthenticated JWKS fetches on unknown kid values (incomplete fix of CVE-2026-48524)",
+   "cvss": 5.3,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4141",
+   "aliases": [
+    "CVE-2026-101918",
+    "GHSA-42vr-xj54-vc7v"
+   ],
+   "resumo": "PyJWT: Unauthenticated RecursionError DoS in pre-verification payload parse (PyJWKClient.get_signing_key_from_jwt / verify_signature=False)",
+   "cvss": 5.3,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.15.0"
+   ]
+  },
+  {
+   "id": "GHSA-hxm8-2xgr-2p9m",
+   "aliases": [
+    "CVE-2026-102269",
+    "PYSEC-2026-4147"
+   ],
+   "resumo": "PyJWT: Non-canonical signature segments enable raw-token revocation bypass",
+   "cvss": 4.8,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4147",
+   "aliases": [
+    "CVE-2026-102269",
+    "GHSA-hxm8-2xgr-2p9m"
+   ],
+   "resumo": "PyJWT: Non-canonical signature segments enable raw-token revocation bypass",
+   "cvss": 4.8,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "GHSA-jwrc-g2q2-pq5p",
+   "aliases": [
+    "CVE-2026-102270",
+    "PYSEC-2026-4148"
+   ],
+   "resumo": "PyJWT: ReDoS vulnerability when calling the `is_pem_format` function.",
+   "cvss": 4.4,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4148",
+   "aliases": [
+    "CVE-2026-102270",
+    "GHSA-jwrc-g2q2-pq5p"
+   ],
+   "resumo": "PyJWT: ReDoS vulnerability when calling the `is_pem_format` function.",
+   "cvss": 4.4,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.14.0"
+   ]
+  },
+  {
+   "id": "GHSA-993g-76c3-p5m4",
+   "aliases": [
+    "CVE-2026-48522",
+    "PYSEC-2026-175"
+   ],
+   "resumo": "PyJWKClient: missing scheme allowlist enables CVE-2024-21643-class SSRF + token forgery via file://, ftp://, data: schemes",
+   "cvss": 4.2,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "2.13.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-175",
+   "aliases": [
+    "CVE-2026-48522",
+    "GHSA-993g-76c3-p5m4"
+   ],
+   "resumo": "",
+   "cvss": 4.2,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.13.0"
+   ]
+  },
+  {
+   "id": "GHSA-fhv5-28vv-h8m8",
+   "aliases": [
+    "CVE-2026-48524",
+    "PYSEC-2026-177"
+   ],
+   "resumo": "PyJWKClient unbounded JWKS endpoint requests via attacker-controlled kid values (DoS)",
+   "cvss": 3.7,
+   "severidade_rotulo": "LOW",
+   "corrigida_em": [
+    "2.13.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-177",
+   "aliases": [
+    "CVE-2026-48524",
+    "GHSA-fhv5-28vv-h8m8"
+   ],
+   "resumo": "",
+   "cvss": 3.7,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.13.0"
+   ]
+  }
+ ]
+}

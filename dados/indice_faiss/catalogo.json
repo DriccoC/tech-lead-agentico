@@ -1,0 +1,338 @@
+[
+ {
+  "chunk_id": "CHK_000",
+  "doc_id": "MAN-01",
+  "titulo": "MAN-01 — Definição de Pronto (Definition of Done)",
+  "secao": "MAN-01 — Definição de Pronto (Definition of Done)",
+  "arquivo": "MAN-01_definicao_de_pronto.md",
+  "inicio": "# MAN-01 — Definição de Pronto (Definition of Done)\n\nCódigo: MAN-01 · Versão 3.2 · Vigênci"
+ },
+ {
+  "chunk_id": "CHK_001",
+  "doc_id": "MAN-01",
+  "titulo": "MAN-01 — Definição de Pronto (Definition of Done)",
+  "secao": "1. Objetivo",
+  "arquivo": "MAN-01_definicao_de_pronto.md",
+  "inicio": "## 1. Objetivo\nEstabelecer os critérios mínimos que um incremento de software deve cumprir"
+ },
+ {
+  "chunk_id": "CHK_002",
+  "doc_id": "MAN-01",
+  "titulo": "MAN-01 — Definição de Pronto (Definition of Done)",
+  "secao": "2. Critérios obrigatórios de conclusão",
+  "arquivo": "MAN-01_definicao_de_pronto.md",
+  "inicio": "## 2. Critérios obrigatórios de conclusão\n1. Critérios de aceite descritos no formato Gher"
+ },
+ {
+  "chunk_id": "CHK_003",
+  "doc_id": "MAN-01",
+  "titulo": "MAN-01 — Definição de Pronto (Definition of Done)",
+  "secao": "2. Critérios obrigatórios de conclusão",
+  "arquivo": "MAN-01_definicao_de_pronto.md",
+  "inicio": "4. Revisão de código aprovada por pelo menos dois revisores, sendo ao menos um de nível sê"
+ },
+ {
+  "chunk_id": "CHK_004",
+  "doc_id": "MAN-01",
+  "titulo": "MAN-01 — Definição de Pronto (Definition of Done)",
+  "secao": "3. Critérios específicos por tipo de entrega",
+  "arquivo": "MAN-01_definicao_de_pronto.md",
+  "inicio": "## 3. Critérios específicos por tipo de entrega\n- Funcionalidades com dados pessoais: aval"
+ },
+ {
+  "chunk_id": "CHK_005",
+  "doc_id": "MAN-01",
+  "titulo": "MAN-01 — Definição de Pronto (Definition of Done)",
+  "secao": "4. Exceções",
+  "arquivo": "MAN-01_definicao_de_pronto.md",
+  "inicio": "## 4. Exceções\nExceções a esta norma exigem registro formal no quadro da sprint, com justi"
+ },
+ {
+  "chunk_id": "CHK_006",
+  "doc_id": "MAN-02",
+  "titulo": "MAN-02 — Padrões de Codificação",
+  "secao": "MAN-02 — Padrões de Codificação",
+  "arquivo": "MAN-02_padroes_de_codigo.md",
+  "inicio": "# MAN-02 — Padrões de Codificação\n\nCódigo: MAN-02 · Versão 2.4 · Vigência: 01/06/2026 · Re"
+ },
+ {
+  "chunk_id": "CHK_007",
+  "doc_id": "MAN-02",
+  "titulo": "MAN-02 — Padrões de Codificação",
+  "secao": "1. Python (serviços FastAPI)",
+  "arquivo": "MAN-02_padroes_de_codigo.md",
+  "inicio": "## 1. Python (serviços FastAPI)\n- Versão de referência: Python 3.12. Anotações de tipo obr"
+ },
+ {
+  "chunk_id": "CHK_008",
+  "doc_id": "MAN-02",
+  "titulo": "MAN-02 — Padrões de Codificação",
+  "secao": "2. Java (serviços Quarkus)",
+  "arquivo": "MAN-02_padroes_de_codigo.md",
+  "inicio": "## 2. Java (serviços Quarkus)\n- Versão de referência: Java 21 com Quarkus 3. Formatação co"
+ },
+ {
+  "chunk_id": "CHK_009",
+  "doc_id": "MAN-02",
+  "titulo": "MAN-02 — Padrões de Codificação",
+  "secao": "3. Front-end (React) e Mobile (Flutter)",
+  "arquivo": "MAN-02_padroes_de_codigo.md",
+  "inicio": "## 3. Front-end (React) e Mobile (Flutter)\n- React com TypeScript em modo estrito; compone"
+ },
+ {
+  "chunk_id": "CHK_010",
+  "doc_id": "MAN-02",
+  "titulo": "MAN-02 — Padrões de Codificação",
+  "secao": "4. Convenções gerais",
+  "arquivo": "MAN-02_padroes_de_codigo.md",
+  "inicio": "## 4. Convenções gerais\n- Mensagens de commit no padrão Conventional Commits (feat, fix, c"
+ },
+ {
+  "chunk_id": "CHK_011",
+  "doc_id": "MAN-03",
+  "titulo": "MAN-03 — Política de Versionamento e Implantação",
+  "secao": "MAN-03 — Política de Versionamento e Implantação",
+  "arquivo": "MAN-03_versionamento_e_implantacao.md",
+  "inicio": "# MAN-03 — Política de Versionamento e Implantação\n\nCódigo: MAN-03 · Versão 4.0 · Vigência"
+ },
+ {
+  "chunk_id": "CHK_012",
+  "doc_id": "MAN-03",
+  "titulo": "MAN-03 — Política de Versionamento e Implantação",
+  "secao": "1. Modelo de ramificação",
+  "arquivo": "MAN-03_versionamento_e_implantacao.md",
+  "inicio": "## 1. Modelo de ramificação\nAdota-se o desenvolvimento baseado em tronco (trunk-based deve"
+ },
+ {
+  "chunk_id": "CHK_013",
+  "doc_id": "MAN-03",
+  "titulo": "MAN-03 — Política de Versionamento e Implantação",
+  "secao": "2. Ramificações de curta duração",
+  "arquivo": "MAN-03_versionamento_e_implantacao.md",
+  "inicio": "## 2. Ramificações de curta duração\nRamificações de trabalho devem ter duração máxima de d"
+ },
+ {
+  "chunk_id": "CHK_014",
+  "doc_id": "MAN-03",
+  "titulo": "MAN-03 — Política de Versionamento e Implantação",
+  "secao": "3. Janela de congelamento de mudanças",
+  "arquivo": "MAN-03_versionamento_e_implantacao.md",
+  "inicio": "## 3. Janela de congelamento de mudanças\nFica instituída a janela de congelamento de mudan"
+ },
+ {
+  "chunk_id": "CHK_015",
+  "doc_id": "MAN-03",
+  "titulo": "MAN-03 — Política de Versionamento e Implantação",
+  "secao": "4. Procedimento de implantação",
+  "arquivo": "MAN-03_versionamento_e_implantacao.md",
+  "inicio": "## 4. Procedimento de implantação\n1. Implantação automática no ambiente de homologação a c"
+ },
+ {
+  "chunk_id": "CHK_016",
+  "doc_id": "MAN-03",
+  "titulo": "MAN-03 — Política de Versionamento e Implantação",
+  "secao": "5. Versionamento semântico",
+  "arquivo": "MAN-03_versionamento_e_implantacao.md",
+  "inicio": "## 5. Versionamento semântico\nBibliotecas e APIs públicas seguem o versionamento semântico"
+ },
+ {
+  "chunk_id": "CHK_017",
+  "doc_id": "MAN-04",
+  "titulo": "MAN-04 — Política de Segurança da Cadeia de Suprimentos de Software",
+  "secao": "MAN-04 — Política de Segurança da Cadeia de Suprimentos de Software",
+  "arquivo": "MAN-04_seguranca_de_dependencias.md",
+  "inicio": "# MAN-04 — Política de Segurança da Cadeia de Suprimentos de Software\n\nCódigo: MAN-04 · Ve"
+ },
+ {
+  "chunk_id": "CHK_018",
+  "doc_id": "MAN-04",
+  "titulo": "MAN-04 — Política de Segurança da Cadeia de Suprimentos de Software",
+  "secao": "1. Escopo",
+  "arquivo": "MAN-04_seguranca_de_dependencias.md",
+  "inicio": "## 1. Escopo\nAplica-se a todos os componentes de terceiros (bibliotecas, pacotes, imagens "
+ },
+ {
+  "chunk_id": "CHK_019",
+  "doc_id": "MAN-04",
+  "titulo": "MAN-04 — Política de Segurança da Cadeia de Suprimentos de Software",
+  "secao": "2. Critérios de admissão de componentes",
+  "arquivo": "MAN-04_seguranca_de_dependencias.md",
+  "inicio": "## 2. Critérios de admissão de componentes\n1. É vedada a adoção de componente com vulnerab"
+ },
+ {
+  "chunk_id": "CHK_020",
+  "doc_id": "MAN-04",
+  "titulo": "MAN-04 — Política de Segurança da Cadeia de Suprimentos de Software",
+  "secao": "2. Critérios de admissão de componentes",
+  "arquivo": "MAN-04_seguranca_de_dependencias.md",
+  "inicio": "4. Componentes sem manutenção há mais de 18 meses exigem avaliação de risco."
+ },
+ {
+  "chunk_id": "CHK_021",
+  "doc_id": "MAN-04",
+  "titulo": "MAN-04 — Política de Segurança da Cadeia de Suprimentos de Software",
+  "secao": "3. Classificação de severidade (CVSS v3)",
+  "arquivo": "MAN-04_seguranca_de_dependencias.md",
+  "inicio": "## 3. Classificação de severidade (CVSS v3)\n- Nenhuma: 0,0\n- Baixa: 0,1 a 3,9\n- Média: 4,0"
+ },
+ {
+  "chunk_id": "CHK_022",
+  "doc_id": "MAN-04",
+  "titulo": "MAN-04 — Política de Segurança da Cadeia de Suprimentos de Software",
+  "secao": "4. Monitoramento contínuo",
+  "arquivo": "MAN-04_seguranca_de_dependencias.md",
+  "inicio": "## 4. Monitoramento contínuo\nAs dependências devem ser verificadas contra bases públicas d"
+ },
+ {
+  "chunk_id": "CHK_023",
+  "doc_id": "MAN-05",
+  "titulo": "MAN-05 — Padrão de Autenticação e Gestão de Identidade",
+  "secao": "MAN-05 — Padrão de Autenticação e Gestão de Identidade",
+  "arquivo": "MAN-05_autenticacao_e_identidade.md",
+  "inicio": "# MAN-05 — Padrão de Autenticação e Gestão de Identidade\n\nCódigo: MAN-05 · Versão 2.1 · Vi"
+ },
+ {
+  "chunk_id": "CHK_024",
+  "doc_id": "MAN-05",
+  "titulo": "MAN-05 — Padrão de Autenticação e Gestão de Identidade",
+  "secao": "1. Protocolos homologados",
+  "arquivo": "MAN-05_autenticacao_e_identidade.md",
+  "inicio": "## 1. Protocolos homologados\nA autenticação de usuários finais deve utilizar OpenID Connec"
+ },
+ {
+  "chunk_id": "CHK_025",
+  "doc_id": "MAN-05",
+  "titulo": "MAN-05 — Padrão de Autenticação e Gestão de Identidade",
+  "secao": "2. Provedores de identidade federada",
+  "arquivo": "MAN-05_autenticacao_e_identidade.md",
+  "inicio": "## 2. Provedores de identidade federada\nO acesso por provedores de identidade externos (lo"
+ },
+ {
+  "chunk_id": "CHK_026",
+  "doc_id": "MAN-05",
+  "titulo": "MAN-05 — Padrão de Autenticação e Gestão de Identidade",
+  "secao": "3. Bibliotecas homologadas",
+  "arquivo": "MAN-05_autenticacao_e_identidade.md",
+  "inicio": "## 3. Bibliotecas homologadas\n- Python: authlib, na versão estável mais recente, observada"
+ },
+ {
+  "chunk_id": "CHK_027",
+  "doc_id": "MAN-05",
+  "titulo": "MAN-05 — Padrão de Autenticação e Gestão de Identidade",
+  "secao": "4. Tokens e sessões",
+  "arquivo": "MAN-05_autenticacao_e_identidade.md",
+  "inicio": "## 4. Tokens e sessões\n- Tokens de acesso com validade máxima de 15 minutos; tokens de ren"
+ },
+ {
+  "chunk_id": "CHK_028",
+  "doc_id": "MAN-05",
+  "titulo": "MAN-05 — Padrão de Autenticação e Gestão de Identidade",
+  "secao": "5. Autenticação multifator",
+  "arquivo": "MAN-05_autenticacao_e_identidade.md",
+  "inicio": "## 5. Autenticação multifator\nA autenticação multifator é obrigatória para operações sensí"
+ },
+ {
+  "chunk_id": "CHK_029",
+  "doc_id": "MAN-05",
+  "titulo": "MAN-05 — Padrão de Autenticação e Gestão de Identidade",
+  "secao": "6. Revisão de segurança",
+  "arquivo": "MAN-05_autenticacao_e_identidade.md",
+  "inicio": "## 6. Revisão de segurança\nToda alteração em autenticação ou autorização requer revisão do"
+ },
+ {
+  "chunk_id": "CHK_030",
+  "doc_id": "MAN-06",
+  "titulo": "MAN-06 — Norma de Planejamento de Iterações e Estimativa",
+  "secao": "MAN-06 — Norma de Planejamento de Iterações e Estimativa",
+  "arquivo": "MAN-06_planejamento_e_estimativa.md",
+  "inicio": "# MAN-06 — Norma de Planejamento de Iterações e Estimativa\n\nCódigo: MAN-06 · Versão 2.0 · "
+ },
+ {
+  "chunk_id": "CHK_031",
+  "doc_id": "MAN-06",
+  "titulo": "MAN-06 — Norma de Planejamento de Iterações e Estimativa",
+  "secao": "1. Iterações",
+  "arquivo": "MAN-06_planejamento_e_estimativa.md",
+  "inicio": "## 1. Iterações\nAs iterações (sprints) têm duração de duas semanas, de segunda-feira a sex"
+ },
+ {
+  "chunk_id": "CHK_032",
+  "doc_id": "MAN-06",
+  "titulo": "MAN-06 — Norma de Planejamento de Iterações e Estimativa",
+  "secao": "2. Estimativa",
+  "arquivo": "MAN-06_planejamento_e_estimativa.md",
+  "inicio": "## 2. Estimativa\n- As histórias são estimadas em pontos na sequência de Fibonacci (1, 2, 3"
+ },
+ {
+  "chunk_id": "CHK_033",
+  "doc_id": "MAN-06",
+  "titulo": "MAN-06 — Norma de Planejamento de Iterações e Estimativa",
+  "secao": "3. Cálculo de capacidade da sprint",
+  "arquivo": "MAN-06_planejamento_e_estimativa.md",
+  "inicio": "## 3. Cálculo de capacidade da sprint\nA capacidade é calculada pela fórmula:\n\ncapacidade b"
+ },
+ {
+  "chunk_id": "CHK_034",
+  "doc_id": "MAN-06",
+  "titulo": "MAN-06 — Norma de Planejamento de Iterações e Estimativa",
+  "secao": "4. Priorização",
+  "arquivo": "MAN-06_planejamento_e_estimativa.md",
+  "inicio": "## 4. Priorização\n- Defeitos de severidade crítica têm precedência sobre qualquer história"
+ },
+ {
+  "chunk_id": "CHK_035",
+  "doc_id": "MAN-06",
+  "titulo": "MAN-06 — Norma de Planejamento de Iterações e Estimativa",
+  "secao": "5. Decomposição de demandas",
+  "arquivo": "MAN-06_planejamento_e_estimativa.md",
+  "inicio": "## 5. Decomposição de demandas\nDemandas amplas são organizadas em épicos, decompostos em h"
+ },
+ {
+  "chunk_id": "CHK_036",
+  "doc_id": "MAN-07",
+  "titulo": "MAN-07 — Registros de Decisão Arquitetural (ADR)",
+  "secao": "MAN-07 — Registros de Decisão Arquitetural (ADR)",
+  "arquivo": "MAN-07_registros_de_decisao_arquitetural.md",
+  "inicio": "# MAN-07 — Registros de Decisão Arquitetural (ADR)\n\nCódigo: MAN-07 · Versão 1.9 · Vigência"
+ },
+ {
+  "chunk_id": "CHK_037",
+  "doc_id": "MAN-07",
+  "titulo": "MAN-07 — Registros de Decisão Arquitetural (ADR)",
+  "secao": "ADR-004 — Adoção do FastAPI para serviços Python",
+  "arquivo": "MAN-07_registros_de_decisao_arquitetural.md",
+  "inicio": "## ADR-004 — Adoção do FastAPI para serviços Python\nStatus: aceita (2025). Contexto: neces"
+ },
+ {
+  "chunk_id": "CHK_038",
+  "doc_id": "MAN-07",
+  "titulo": "MAN-07 — Registros de Decisão Arquitetural (ADR)",
+  "secao": "ADR-009 — Mensageria com Kafka para eventos de pagamento",
+  "arquivo": "MAN-07_registros_de_decisao_arquitetural.md",
+  "inicio": "## ADR-009 — Mensageria com Kafka para eventos de pagamento\nStatus: aceita (2025). Decisão"
+ },
+ {
+  "chunk_id": "CHK_039",
+  "doc_id": "MAN-07",
+  "titulo": "MAN-07 — Registros de Decisão Arquitetural (ADR)",
+  "secao": "ADR-012 — Provedor de identidade central",
+  "arquivo": "MAN-07_registros_de_decisao_arquitetural.md",
+  "inicio": "## ADR-012 — Provedor de identidade central\nStatus: aceita (2026). Contexto: múltiplos pro"
+ },
+ {
+  "chunk_id": "CHK_040",
+  "doc_id": "MAN-07",
+  "titulo": "MAN-07 — Registros de Decisão Arquitetural (ADR)",
+  "secao": "ADR-015 — Observabilidade com OpenTelemetry",
+  "arquivo": "MAN-07_registros_de_decisao_arquitetural.md",
+  "inicio": "## ADR-015 — Observabilidade com OpenTelemetry\nStatus: aceita (2026). Decisão: rastreament"
+ },
+ {
+  "chunk_id": "CHK_041",
+  "doc_id": "MAN-07",
+  "titulo": "MAN-07 — Registros de Decisão Arquitetural (ADR)",
+  "secao": "ADR-017 — Banco de dados por serviço",
+  "arquivo": "MAN-07_registros_de_decisao_arquitetural.md",
+  "inicio": "## ADR-017 — Banco de dados por serviço\nStatus: proposta (2026). Contexto: o banco compart"
+ }
+]

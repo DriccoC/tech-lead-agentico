@@ -1,0 +1,28 @@
+{
+ "pacote": "requests",
+ "encontrado": true,
+ "versao_mais_recente": "2.34.2",
+ "resumo": "Python HTTP for Humans.",
+ "ultimas_versoes": [
+  {
+   "versao": "2.34.2",
+   "data": "2026-05-14"
+  },
+  {
+   "versao": "2.34.1",
+   "data": "2026-05-13"
+  },
+  {
+   "versao": "2.34.0",
+   "data": "2026-05-11"
+  },
+  {
+   "versao": "2.33.1",
+   "data": "2026-03-30"
+  },
+  {
+   "versao": "2.33.0",
+   "data": "2026-03-25"
+  }
+ ]
+}

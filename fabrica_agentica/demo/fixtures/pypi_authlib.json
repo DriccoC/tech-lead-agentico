@@ -1,0 +1,28 @@
+{
+ "pacote": "authlib",
+ "encontrado": true,
+ "versao_mais_recente": "1.9.5",
+ "resumo": "The ultimate Python library in building OAuth and OpenID Connect servers and clients.",
+ "ultimas_versoes": [
+  {
+   "versao": "1.9.5",
+   "data": "2026-11-05"
+  },
+  {
+   "versao": "1.9.4",
+   "data": "2026-11-04"
+  },
+  {
+   "versao": "1.9.3",
+   "data": "2026-11-03"
+  },
+  {
+   "versao": "1.9.2",
+   "data": "2026-11-01"
+  },
+  {
+   "versao": "1.9.1",
+   "data": "2026-10-14"
+  }
+ ]
+}

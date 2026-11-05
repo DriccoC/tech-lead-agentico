@@ -1,0 +1,178 @@
+{
+ "com-transformacao": {
+  "transformacao": "multi-query+hyde",
+  "experimento": "https://smith.langchain.com/o/8e3df3dc-aeb3-41c4-8f3e-b27102cbb2dd/datasets/e57c3861-8a30-40d7-9e00-50b578da19d7/compare?selectedSessions=931da3e6-1571-41f7-a912-cff6e49867d9",
+  "minutos": 3.7,
+  "medias": {
+   "cobertura_trajetoria": 0.789,
+   "trajetoria_exata": 0.632,
+   "corretude": 0.737,
+   "verificacao_final": 0.786,
+   "verificacao_rascunho": 0.5,
+   "corrigida": 0.368
+  },
+  "por_categoria": {
+   "cobertura_trajetoria": {
+    "adversarial": 1.0,
+    "api": 0.5,
+    "capacidade": 1.0,
+    "conversa": 1.0,
+    "dependencia": 1.0,
+    "fora_escopo": 1.0,
+    "memoria": 1.0,
+    "planejamento": 1.0,
+    "rag_dificil": 0.5,
+    "sql": 0.667
+   },
+   "trajetoria_exata": {
+    "adversarial": 0.0,
+    "api": 0.5,
+    "capacidade": 1.0,
+    "conversa": 1.0,
+    "dependencia": 0.5,
+    "fora_escopo": 1.0,
+    "memoria": 1.0,
+    "planejamento": 0.0,
+    "rag_dificil": 0.5,
+    "sql": 0.667
+   },
+   "corretude": {
+    "adversarial": 0.95,
+    "api": 0.55,
+    "capacidade": 0.95,
+    "conversa": 0.95,
+    "dependencia": 0.95,
+    "fora_escopo": 0.9,
+    "memoria": 1.0,
+    "planejamento": 0.6,
+    "rag_dificil": 0.438,
+    "sql": 0.65
+   },
+   "verificacao_final": {
+    "adversarial": 1.0,
+    "api": 1.0,
+    "capacidade": 1.0,
+    "conversa": NaN,
+    "dependencia": 0.5,
+    "fora_escopo": 1.0,
+    "memoria": 1.0,
+    "planejamento": 1.0,
+    "rag_dificil": 0.0,
+    "sql": 1.0
+   },
+   "verificacao_rascunho": {
+    "adversarial": 0.0,
+    "api": 0.0,
+    "capacidade": 1.0,
+    "conversa": NaN,
+    "dependencia": 0.5,
+    "fora_escopo": 0.0,
+    "memoria": 1.0,
+    "planejamento": 0.0,
+    "rag_dificil": 0.0,
+    "sql": 1.0
+   },
+   "corrigida": {
+    "adversarial": 1.0,
+    "api": 0.5,
+    "capacidade": 0.0,
+    "conversa": 0.0,
+    "dependencia": 0.5,
+    "fora_escopo": 1.0,
+    "memoria": 0.0,
+    "planejamento": 1.0,
+    "rag_dificil": 0.5,
+    "sql": 0.0
+   }
+  },
+  "latencia_media_s": 22.0
+ },
+ "sem-transformacao": {
+  "transformacao": "nenhuma",
+  "experimento": "https://smith.langchain.com/o/8e3df3dc-aeb3-41c4-8f3e-b27102cbb2dd/datasets/e57c3861-8a30-40d7-9e00-50b578da19d7/compare?selectedSessions=e1fa9f4f-89bc-4913-bdad-0c5c6f0535b9",
+  "minutos": 2.4,
+  "medias": {
+   "cobertura_trajetoria": 0.842,
+   "trajetoria_exata": 0.684,
+   "corretude": 0.805,
+   "verificacao_final": 0.857,
+   "verificacao_rascunho": 0.857,
+   "corrigida": 0.105
+  },
+  "por_categoria": {
+   "cobertura_trajetoria": {
+    "adversarial": 1.0,
+    "api": 0.5,
+    "capacidade": 1.0,
+    "conversa": 1.0,
+    "dependencia": 1.0,
+    "fora_escopo": 1.0,
+    "memoria": 1.0,
+    "planejamento": 1.0,
+    "rag_dificil": 0.75,
+    "sql": 0.667
+   },
+   "trajetoria_exata": {
+    "adversarial": 0.0,
+    "api": 0.5,
+    "capacidade": 1.0,
+    "conversa": 1.0,
+    "dependencia": 0.5,
+    "fora_escopo": 1.0,
+    "memoria": 1.0,
+    "planejamento": 0.0,
+    "rag_dificil": 0.75,
+    "sql": 0.667
+   },
+   "corretude": {
+    "adversarial": 1.0,
+    "api": 0.525,
+    "capacidade": 0.975,
+    "conversa": 0.95,
+    "dependencia": 0.95,
+    "fora_escopo": 1.0,
+    "memoria": 0.975,
+    "planejamento": 0.7,
+    "rag_dificil": 0.7,
+    "sql": 0.667
+   },
+   "verificacao_final": {
+    "adversarial": 1.0,
+    "api": 0.0,
+    "capacidade": 1.0,
+    "conversa": NaN,
+    "dependencia": 0.5,
+    "fora_escopo": NaN,
+    "memoria": 1.0,
+    "planejamento": 1.0,
+    "rag_dificil": 1.0,
+    "sql": 1.0
+   },
+   "verificacao_rascunho": {
+    "adversarial": 1.0,
+    "api": 0.0,
+    "capacidade": 1.0,
+    "conversa": NaN,
+    "dependencia": 0.5,
+    "fora_escopo": NaN,
+    "memoria": 1.0,
+    "planejamento": 1.0,
+    "rag_dificil": 1.0,
+    "sql": 1.0
+   },
+   "corrigida": {
+    "adversarial": 0.0,
+    "api": 0.5,
+    "capacidade": 0.0,
+    "conversa": 0.0,
+    "dependencia": 0.5,
+    "fora_escopo": 0.0,
+    "memoria": 0.0,
+    "planejamento": 0.0,
+    "rag_dificil": 0.0,
+    "sql": 0.0
+   }
+  },
+  "latencia_media_s": 14.4
+ }
+}

@@ -1,0 +1,26 @@
+# Tech Lead Agêntico — dependências (Python 3.12)
+langchain==1.4.9
+langchain-classic==1.0.8        # construtos legados exigidos pela rubrica (initialize_agent, RouterChain, AgentExecutor...)
+langchain-core==1.7.6
+langchain-anthropic==1.7.10     # Claude (provedor padrão)
+langchain-openai                # opcional: alternativa para quem só tem chave da OpenAI
+langchain-community
+langchain-huggingface==1.2.3    # embeddings locais
+langchain-text-splitters
+langgraph==1.2.20
+langgraph-checkpoint-sqlite
+langsmith==0.14.17
+faiss-cpu==1.15.1
+sentence-transformers==6.2.0
+transformers==5.22.1            # modelo NLI local
+torch==2.15.0
+pydantic==2.14.3
+httpx==0.28.1
+cvss==3.6                       # pontuação CVSS a partir do vetor da OSV
+python-dotenv==1.2.4
+pandas==3.1.1
+streamlit==1.66.1
+pytest==9.2.0
+jupyter==1.1.1
+nbconvert==7.17.2
+ipykernel==7.4.0

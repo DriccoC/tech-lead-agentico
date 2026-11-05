@@ -1,0 +1,449 @@
+{
+ "pacote": "authlib",
+ "versao": "1.3.0",
+ "total": 34,
+ "vulnerabilidades": [
+  {
+   "id": "GHSA-6v38-4h7w-rj9h",
+   "aliases": [
+    "CVE-2026-96760"
+   ],
+   "resumo": "Authlib: empty signatures validation in JWS JSON deserialization",
+   "cvss": 9.1,
+   "severidade_rotulo": "CRITICAL",
+   "corrigida_em": [
+    "1.9.0"
+   ]
+  },
+  {
+   "id": "GHSA-wvwj-cvrp-7pv5",
+   "aliases": [
+    "CVE-2026-27962",
+    "PYSEC-2026-287"
+   ],
+   "resumo": "Authlib JWS JWK Header Injection: Signature Verification Bypass",
+   "cvss": 9.1,
+   "severidade_rotulo": "CRITICAL",
+   "corrigida_em": [
+    "1.6.9"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-287",
+   "aliases": [
+    "CVE-2026-27962",
+    "GHSA-wvwj-cvrp-7pv5"
+   ],
+   "resumo": "Authlib JWS JWK Header Injection: Signature Verification Bypass",
+   "cvss": 9.1,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.6.9"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4356",
+   "aliases": [
+    "CVE-2026-114616",
+    "GHSA-8m4g-j4wp-wgcg"
+   ],
+   "resumo": "",
+   "cvss": 9.1,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.9.1"
+   ]
+  },
+  {
+   "id": "GHSA-c73q-w75p-j82v",
+   "aliases": [
+    "CVE-2026-116672"
+   ],
+   "resumo": "Authlib RFC 7592 examples omit registration-access-token client binding",
+   "cvss": 8.8,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "1.9.1"
+   ]
+  },
+  {
+   "id": "GHSA-7432-952r-cw78",
+   "aliases": [
+    "CVE-2026-28490",
+    "PYSEC-2026-2116"
+   ],
+   "resumo": "Authlib Vulnerable to JWE RSA1_5 Bleichenbacher Padding Oracle",
+   "cvss": 8.3,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "1.6.9"
+   ]
+  },
+  {
+   "id": "GHSA-m344-f55w-2m6j",
+   "aliases": [
+    "CVE-2026-28498",
+    "PYSEC-2026-2117"
+   ],
+   "resumo": "Authlib: Fail-Open Cryptographic Verification in OIDC Hash Binding",
+   "cvss": 8.2,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "1.6.9"
+   ]
+  },
+  {
+   "id": "GHSA-9ggr-2464-2j32",
+   "aliases": [
+    "CVE-2025-59420",
+    "PYSEC-2026-1200"
+   ],
+   "resumo": "Authlib: JWS/JWT accepts unknown crit headers (RFC violation → possible authz bypass)",
+   "cvss": 7.5,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "1.6.4"
+   ]
+  },
+  {
+   "id": "GHSA-pq5p-34cr-23v9",
+   "aliases": [
+    "CVE-2025-61920",
+    "PYSEC-2026-1203"
+   ],
+   "resumo": "Authlib is vulnerable to Denial of Service via Oversized JOSE Segments",
+   "cvss": 7.5,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "1.6.5"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-1200",
+   "aliases": [
+    "CVE-2025-59420",
+    "GHSA-9ggr-2464-2j32"
+   ],
+   "resumo": "Authlib: JWS/JWT accepts unknown crit headers (RFC violation → possible authz bypass)",
+   "cvss": 7.5,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.6.4"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-1203",
+   "aliases": [
+    "CVE-2025-61920",
+    "GHSA-pq5p-34cr-23v9"
+   ],
+   "resumo": "Authlib is vulnerable to Denial of Service via Oversized JOSE Segments",
+   "cvss": 7.5,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.6.5"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-2117",
+   "aliases": [
+    "CVE-2026-28498",
+    "GHSA-m344-f55w-2m6j"
+   ],
+   "resumo": "",
+   "cvss": 7.5,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.6.9"
+   ]
+  },
+  {
+   "id": "GHSA-5357-c2jx-v7qh",
+   "aliases": [
+    "CVE-2024-37568",
+    "PYSEC-2024-52"
+   ],
+   "resumo": "Authlib has algorithm confusion with asymmetric public keys",
+   "cvss": 7.4,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "1.3.1"
+   ]
+  },
+  {
+   "id": "GHSA-8m4g-j4wp-wgcg",
+   "aliases": [
+    "CVE-2026-114616",
+    "PYSEC-2026-4356"
+   ],
+   "resumo": "Authlib accepts an empty HMAC key, allowing JWS/JWT signature forgery (HS256/HS384/HS512)",
+   "cvss": 7.4,
+   "severidade_rotulo": "HIGH",
+   "corrigida_em": [
+    "1.9.1"
+   ]
+  },
+  {
+   "id": "GHSA-fch4-3c6x-j4gc",
+   "aliases": [
+    "CVE-2026-114618",
+    "PYSEC-2026-4358"
+   ],
+   "resumo": "Authlib: Default JWT bearer grant accepts assertions for the wrong audience",
+   "cvss": 6.8,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "1.9.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4358",
+   "aliases": [
+    "CVE-2026-114618",
+    "GHSA-fch4-3c6x-j4gc"
+   ],
+   "resumo": "",
+   "cvss": 6.8,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.9.0"
+   ]
+  },
+  {
+   "id": "GHSA-g7f3-828f-7h7m",
+   "aliases": [
+    "CVE-2025-62706",
+    "PYSEC-2026-1202"
+   ],
+   "resumo": "Authlib : JWE zip=DEF decompression bomb enables DoS",
+   "cvss": 6.5,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "1.6.5"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-1202",
+   "aliases": [
+    "CVE-2025-62706",
+    "GHSA-g7f3-828f-7h7m"
+   ],
+   "resumo": "Authlib : JWE zip=DEF decompression bomb enables DoS",
+   "cvss": 6.5,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.6.5"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-2116",
+   "aliases": [
+    "CVE-2026-28490",
+    "GHSA-7432-952r-cw78"
+   ],
+   "resumo": "",
+   "cvss": 6.5,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.6.9"
+   ]
+  },
+  {
+   "id": "GHSA-r95x-qfjj-fjj2",
+   "aliases": [
+    "CVE-2026-44681",
+    "PYSEC-2026-188"
+   ],
+   "resumo": "Authlib OIDC Implicit/Hybrid Authorization Vulnerable to Open Redirect",
+   "cvss": 6.1,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "1.6.12",
+    "1.7.1"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-188",
+   "aliases": [
+    "CVE-2026-44681",
+    "GHSA-r95x-qfjj-fjj2"
+   ],
+   "resumo": "",
+   "cvss": 6.1,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.6.12"
+   ]
+  },
+  {
+   "id": "GHSA-fg6f-75jq-6523",
+   "aliases": [
+    "CVE-2025-68158",
+    "PYSEC-2026-1201"
+   ],
+   "resumo": "Authlib has 1-click Account Takeover vulnerability",
+   "cvss": 5.7,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "1.6.6"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-1201",
+   "aliases": [
+    "CVE-2025-68158",
+    "GHSA-fg6f-75jq-6523"
+   ],
+   "resumo": "Authlib has 1-click Account Takeover vulnerability",
+   "cvss": 5.7,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.6.6"
+   ]
+  },
+  {
+   "id": "GHSA-jj8c-mmj3-mmgv",
+   "aliases": [
+    "CVE-2026-41425",
+    "PYSEC-2026-25"
+   ],
+   "resumo": "Authlib: Cross-site request forging when using cache",
+   "cvss": 5.4,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "1.6.11"
+   ]
+  },
+  {
+   "id": "GHSA-w8p2-r796-3vmq",
+   "aliases": [
+    "CVE-2026-41479",
+    "PYSEC-2026-2119"
+   ],
+   "resumo": "Authlib OAuth 2.0 has Open Redirect in Authorization API that allows attacker-controlled redirect_uri through unsupported response_type",
+   "cvss": 5.4,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "1.6.10",
+    "1.7.1"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-2119",
+   "aliases": [
+    "CVE-2026-41479",
+    "GHSA-w8p2-r796-3vmq"
+   ],
+   "resumo": "",
+   "cvss": 5.4,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.6.10"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-25",
+   "aliases": [
+    "CVE-2026-41425",
+    "GHSA-jj8c-mmj3-mmgv"
+   ],
+   "resumo": "",
+   "cvss": 5.4,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.6.11"
+   ]
+  },
+  {
+   "id": "GHSA-q686-2qmg-hqc7",
+   "aliases": [
+    "CVE-2026-114619",
+    "PYSEC-2026-4359"
+   ],
+   "resumo": "Authlib: OpenID implicit grant checks raw scope instead of allowed scope before issuing ID tokens",
+   "cvss": 4.6,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "1.9.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4359",
+   "aliases": [
+    "CVE-2026-114619",
+    "GHSA-q686-2qmg-hqc7"
+   ],
+   "resumo": "",
+   "cvss": 4.6,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.9.0"
+   ]
+  },
+  {
+   "id": "GHSA-c5mf-xmp2-59rc",
+   "aliases": [
+    "CVE-2026-114617",
+    "PYSEC-2026-4357"
+   ],
+   "resumo": "Authlib: ID token can disable its own nonce validation via the nonce_supported claim",
+   "cvss": 4.2,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "1.9.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4357",
+   "aliases": [
+    "CVE-2026-114617",
+    "GHSA-c5mf-xmp2-59rc"
+   ],
+   "resumo": "",
+   "cvss": 4.2,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.9.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4354",
+   "aliases": [
+    "CVE-2026-114614",
+    "GHSA-jj7h-c3hg-m23x"
+   ],
+   "resumo": "",
+   "cvss": 3.5,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.8.0"
+   ]
+  },
+  {
+   "id": "GHSA-jj7h-c3hg-m23x",
+   "aliases": [
+    "CVE-2026-114614",
+    "PYSEC-2026-4354"
+   ],
+   "resumo": "Authlib: is_secure_transport() loopback exemption can be bypassed with a userinfo component, allowing cleartext-HTTP URLs to non-loopback hosts",
+   "cvss": 2.6,
+   "severidade_rotulo": "LOW",
+   "corrigida_em": [
+    "1.8.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2024-52",
+   "aliases": [
+    "CVE-2024-37568",
+    "GHSA-5357-c2jx-v7qh"
+   ],
+   "resumo": "",
+   "cvss": null,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "1.3.1"
+   ]
+  }
+ ]
+}

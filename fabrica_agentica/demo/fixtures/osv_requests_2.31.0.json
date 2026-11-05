@@ -1,0 +1,85 @@
+{
+ "pacote": "requests",
+ "versao": "2.31.0",
+ "total": 6,
+ "vulnerabilidades": [
+  {
+   "id": "GHSA-9wx4-h78v-vm56",
+   "aliases": [
+    "CVE-2024-35195",
+    "PYSEC-2026-1873"
+   ],
+   "resumo": "Requests `Session` object does not verify requests after making first request with verify=False",
+   "cvss": 5.6,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "2.32.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-1873",
+   "aliases": [
+    "CVE-2024-35195",
+    "GHSA-9wx4-h78v-vm56"
+   ],
+   "resumo": "Requests `Session` object does not verify requests after making first request with verify=False",
+   "cvss": 5.6,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.32.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-2275",
+   "aliases": [
+    "CVE-2026-25645",
+    "GHSA-gc5v-m9x4-r6x2"
+   ],
+   "resumo": "",
+   "cvss": 5.5,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.33.0"
+   ]
+  },
+  {
+   "id": "GHSA-9hjg-9r4m-mvj7",
+   "aliases": [
+    "CVE-2024-47081",
+    "PYSEC-2026-1872"
+   ],
+   "resumo": "Requests vulnerable to .netrc credentials leak via malicious URLs",
+   "cvss": 5.3,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "2.32.4"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-1872",
+   "aliases": [
+    "CVE-2024-47081",
+    "GHSA-9hjg-9r4m-mvj7"
+   ],
+   "resumo": "Requests vulnerable to .netrc credentials leak via malicious URLs",
+   "cvss": 5.3,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "2.32.4"
+   ]
+  },
+  {
+   "id": "GHSA-gc5v-m9x4-r6x2",
+   "aliases": [
+    "CVE-2026-25645",
+    "PYSEC-2026-2275"
+   ],
+   "resumo": "Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function",
+   "cvss": 4.4,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "2.33.0"
+   ]
+  }
+ ]
+}

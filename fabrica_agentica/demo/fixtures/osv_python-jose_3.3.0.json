@@ -1,0 +1,96 @@
+{
+ "pacote": "python-jose",
+ "versao": "3.3.0",
+ "total": 7,
+ "vulnerabilidades": [
+  {
+   "id": "GHSA-3qf3-8w2g-rqmx",
+   "aliases": [
+    "CVE-2024-33663",
+    "CVE-2026-85394",
+    "GHSA-6c5p-j8vq-pqhj"
+   ],
+   "resumo": "python-jose algorithm confusion guard bypassed by DER-encoded public keys",
+   "cvss": 9.3,
+   "severidade_rotulo": "CRITICAL",
+   "corrigida_em": []
+  },
+  {
+   "id": "GHSA-6c5p-j8vq-pqhj",
+   "aliases": [
+    "CVE-2024-33663",
+    "CVE-2026-85394",
+    "GHSA-3qf3-8w2g-rqmx"
+   ],
+   "resumo": "python-jose algorithm confusion with OpenSSH ECDSA keys",
+   "cvss": 9.3,
+   "severidade_rotulo": "CRITICAL",
+   "corrigida_em": [
+    "3.4.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2026-4298",
+   "aliases": [
+    "CVE-2024-33663",
+    "CVE-2026-85394",
+    "GHSA-3qf3-8w2g-rqmx"
+   ],
+   "resumo": "python-jose algorithm confusion guard bypassed by DER-encoded public keys",
+   "cvss": 9.3,
+   "severidade_rotulo": null,
+   "corrigida_em": []
+  },
+  {
+   "id": "GHSA-cjwg-qfpm-7377",
+   "aliases": [
+    "CVE-2024-33664",
+    "PYSEC-2024-233"
+   ],
+   "resumo": "python-jose denial of service via compressed JWE content",
+   "cvss": 5.3,
+   "severidade_rotulo": "MODERATE",
+   "corrigida_em": [
+    "3.4.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2025-185",
+   "aliases": [
+    "CVE-2024-29370",
+    "GHSA-h4pw-wxh7-4vjj"
+   ],
+   "resumo": "",
+   "cvss": 5.3,
+   "severidade_rotulo": null,
+   "corrigida_em": []
+  },
+  {
+   "id": "PYSEC-2024-232",
+   "aliases": [
+    "CVE-2024-33663",
+    "CVE-2026-85394",
+    "GHSA-3qf3-8w2g-rqmx"
+   ],
+   "resumo": "",
+   "cvss": null,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "3.4.0"
+   ]
+  },
+  {
+   "id": "PYSEC-2024-233",
+   "aliases": [
+    "CVE-2024-33664",
+    "GHSA-cjwg-qfpm-7377"
+   ],
+   "resumo": "",
+   "cvss": null,
+   "severidade_rotulo": null,
+   "corrigida_em": [
+    "3.4.0"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "pacote": "python-jose",
+ "versao": "3.5.0",
+ "total": 2,
+ "vulnerabilidades": [
+  {
+   "id": "GHSA-3qf3-8w2g-rqmx",
+   "aliases": [
+    "CVE-2024-33663",
+    "CVE-2026-85394",
+    "GHSA-6c5p-j8vq-pqhj"
+   ],
+   "resumo": "python-jose algorithm confusion guard bypassed by DER-encoded public keys",
+   "cvss": 9.3,
+   "severidade_rotulo": "CRITICAL",
+   "corrigida_em": []
+  },
+  {
+   "id": "PYSEC-2026-4298",
+   "aliases": [
+    "CVE-2024-33663",
+    "CVE-2026-85394",
+    "GHSA-3qf3-8w2g-rqmx"
+   ],
+   "resumo": "python-jose algorithm confusion guard bypassed by DER-encoded public keys",
+   "cvss": 9.3,
+   "severidade_rotulo": null,
+   "corrigida_em": []
+  }
+ ]
+}

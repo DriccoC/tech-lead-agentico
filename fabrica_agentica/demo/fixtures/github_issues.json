@@ -1,0 +1,30 @@
+[
+ {
+  "numero": 41,
+  "titulo": "Avaliar login social (Google) no Portal",
+  "estado": "open",
+  "url": "(fixture) #41",
+  "corpo": "Clientes pessoa física pedem entrar com conta Google. Verificar ADR-012 (Keycloak)."
+ },
+ {
+  "numero": 37,
+  "titulo": "Sessão expira antes do tempo configurado",
+  "estado": "open",
+  "url": "(fixture) #37",
+  "corpo": "Bug 1 do backlog. Token de renovação não está rotacionando."
+ },
+ {
+  "numero": 29,
+  "titulo": "Atualizar authlib para versão sem CVE",
+  "estado": "closed",
+  "url": "(fixture) #29",
+  "corpo": "Versão 1.3.0 tinha GHSA-5357-c2jx-v7qh (algorithm confusion). Atualizado."
+ },
+ {
+  "numero": 22,
+  "titulo": "Pagamento de fatura por Pix no Portal",
+  "estado": "open",
+  "url": "(fixture) #22",
+  "corpo": "Depende do webhook Pix do PagaFacil."
+ }
+]
