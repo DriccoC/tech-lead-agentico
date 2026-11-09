@@ -110,7 +110,10 @@ def painel_turno(turno: dict, indice: int) -> None:
                     st.markdown(f"- {h}")
             decisao = st.session_state.decisoes.get(chave)
             if decisao:
-                st.success(decisao) if decisao.startswith("Aprovado") else st.info(decisao)
+                if decisao.startswith("Aprovado"):
+                    st.success(decisao)
+                else:
+                    st.info(decisao)
             else:
                 c1, c2 = st.columns(2)
                 if c1.button("✅ Aprovar e gravar", key=f"ok-{chave}"):

@@ -31,6 +31,16 @@ EXPERIMENTOS = {
     "sem-transformacao": "nenhuma",            # B
     "pos-correcao": "nenhuma",                 # C: após corrigir o preenchimento de lacunas (rodar com --so pos-correcao)
 }
+# C reexecuta só os casos em que A ou B pediram esclarecimento sem necessidade (nenhuma ferramenta chamada).
+# A correção apenas remove uma exigência de slot, então não altera os demais casos; isso economiza ~80% das chamadas.
+CASOS_POR_EXPERIMENTO = {
+    "pos-correcao": [
+        "Existe alguma issue no GitHub sobre login social?",
+        "quem precisa revisar meu PR?",
+        "precisa de dois fatores pra pagar fatura?",
+        "Quais bugs de severidade alta ou crítica estão abertos ou em correção?",
+    ],
+}
 
 
 def linhas_langsmith(resultados) -> list[dict]:
@@ -59,7 +69,7 @@ def main(local: bool, somente: list[str]) -> None:
         if local or not os.getenv("LANGSMITH_API_KEY"):
             linhas, url = avaliacao.avaliar_local(transformacao), None
         else:
-            resultados = avaliacao.avaliar_langsmith(f"tech-lead-{nome}", transformacao)
+            resultados = avaliacao.avaliar_langsmith(f"tech-lead-{nome}", transformacao, somente_inputs=CASOS_POR_EXPERIMENTO.get(nome))
             linhas, url = linhas_langsmith(resultados), getattr(resultados, "url", None) or str(getattr(resultados, "experiment_name", ""))
         df = pd.DataFrame(linhas)
         df.to_csv(SAIDA / f"resultados_{nome}.csv", index=False)

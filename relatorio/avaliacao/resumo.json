@@ -174,5 +174,51 @@
    }
   },
   "latencia_media_s": 14.4
+ },
+ "pos-correcao": {
+  "transformacao": "nenhuma",
+  "experimento": "https://smith.langchain.com/o/8e3df3dc-aeb3-41c4-8f3e-b27102cbb2dd/datasets/e57c3861-8a30-40d7-9e00-50b578da19d7/compare?selectedSessions=d14d8693-ed8b-48f8-8758-c2e5a6444932",
+  "minutos": 1.0,
+  "medias": {
+   "cobertura_trajetoria": 1.0,
+   "trajetoria_exata": 1.0,
+   "corretude": 0.95,
+   "verificacao_final": 0.75,
+   "verificacao_rascunho": 0.75,
+   "corrigida": 0.25
+  },
+  "por_categoria": {
+   "cobertura_trajetoria": {
+    "api": 1.0,
+    "rag_dificil": 1.0,
+    "sql": 1.0
+   },
+   "trajetoria_exata": {
+    "api": 1.0,
+    "rag_dificil": 1.0,
+    "sql": 1.0
+   },
+   "corretude": {
+    "api": 0.9,
+    "rag_dificil": 0.95,
+    "sql": 1.0
+   },
+   "verificacao_final": {
+    "api": 1.0,
+    "rag_dificil": 1.0,
+    "sql": 0.0
+   },
+   "verificacao_rascunho": {
+    "api": 1.0,
+    "rag_dificil": 1.0,
+    "sql": 0.0
+   },
+   "corrigida": {
+    "api": 0.0,
+    "rag_dificil": 0.0,
+    "sql": 1.0
+   }
+  },
+  "latencia_media_s": 25.1
  }
 }

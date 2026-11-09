@@ -158,14 +158,18 @@ def garantir_dataset(client) -> str:
     return NOME_DATASET
 
 
-def avaliar_langsmith(prefixo: str, transformacao: str, max_concorrencia: int = 2):
+def avaliar_langsmith(prefixo: str, transformacao: str, max_concorrencia: int = 2, somente_inputs: list[str] | None = None):
+    """Roda o experimento no LangSmith. `somente_inputs` restringe a um subconjunto do dataset (reexecução econômica)."""
     from langsmith import Client, evaluate
 
     os.environ["RAG_TRANSFORMACAO"] = transformacao
     client = Client()
+    dados = garantir_dataset(client)
+    if somente_inputs:
+        dados = [e for e in client.list_examples(dataset_name=dados) if e.inputs["input"] in somente_inputs]
     return evaluate(
         alvo,
-        data=garantir_dataset(client),
+        data=dados,
         evaluators=AVALIADORES,
         experiment_prefix=prefixo,
         metadata={"rag_transformacao": transformacao, "modelo_agente": os.getenv("ANTHROPIC_MODEL_AGENTE", "claude-sonnet-5-5")},

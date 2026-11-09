@@ -110,7 +110,53 @@ Dataset `tech-lead-agentico-avaliacao-v1` com 19 casos em 10 categorias (planeja
 
 **Decisão.** A transformação multi-query + HyDE continua no agente de recuperação que recebe a pergunta literal (Fase 4); no agente integrador, a evidência favorece a reescrita feita pelo próprio agente, mais barata e igualmente correta — o que é exatamente o tipo de conclusão que só uma avaliação de ponta a ponta produz.
 
-<!-- RESULTADOS_C -->
+## 4.4 Experimento C: depois da correção do preenchimento de lacunas
+
+A correção só retirou exigências: o projeto passou a ser obrigatório apenas para planejar uma demanda, e a descrição das intenções ganhou exemplos. Ela pode eliminar pedidos de esclarecimento, mas não pode criar pedidos novos. Por isso, e para economizar chamadas de API, o experimento C (`tech-lead-pos-correcao`) reexecutou **só os 4 casos** em que A ou B pediram esclarecimento sem necessidade. O consolidado **B + C** usa as linhas de C nesses 4 casos e as de B nos outros 15.
+
+| Caso reexecutado | Corretude B → C | Ferramentas chamadas em C |
+|---|---|---|
+| "Existe alguma issue no GitHub sobre login social?" | 0,10 → **0,90** | `buscar_issues_github` |
+| "quem precisa revisar meu PR?" | 0,00 → **0,95** | `buscar_manual_engenharia` |
+| "precisa de dois fatores pra pagar fatura?" | 0,95 (B) / 0,00 (A) → **0,95** | `buscar_manual_engenharia` |
+| "Quais bugs de severidade alta ou crítica estão abertos ou em correção?" | 0,00 → **1,00** | `consultar_backlog_sql` |
+
+| Métrica (média, 19 casos) | B | **B + C** |
+|---|---|---|
+| Cobertura de trajetória | 0,842 | **1,000** |
+| Trajetória exata | 0,684 | **0,842** |
+| Corretude (juiz) | 0,805 | **0,950** |
+| Verificação: resposta final aprovada | 0,857 | 0,824 |
+| Autocorreção acionada | 0,105 | 0,158 |
+| Latência média | 14,4 s | 18,7 s |
+
+**Análise.** A correção resolveu os 4 casos: todos passaram a chamar a ferramenta esperada, e a corretude média subiu de 0,81 para 0,95. A latência média subiu porque esses casos deixaram de terminar num pedido de esclarecimento e passaram a executar ferramentas e verificação. O caso dos bugs mostra um **falso positivo do verificador**: a resposta listou exatamente os dois bugs da referência (corretude 1,0), mas o verificador reprovou o rascunho e também a versão corrigida. Isso reforça a limitação descrita na seção 5: o verificador é conservador e depende de um juiz LLM que também erra.
+
+## 4.5 Sessão real na interface, com issues reais
+
+Sessão no Streamlit (motor AgentExecutor, verificação ligada), em 09/11/2026, com o usuário `adriano` e memórias de longo prazo de sessões anteriores:
+
+1. **"Quero login com Google no projeto Portal na próxima sprint."** O agente chamou 8 ferramentas: capacidade (com o feriado de 20/11 obtido da BrasilAPI), manual (2 buscas), PyPI, GitHub (2 buscas), OSV e decomposição. Propôs 3 histórias e 11 pontos contra um saldo de 14. Respeitou a memória semântica de que o login social não vale para clientes B2B e usou a memória episódica sobre a authlib 1.3.0 descartada. A verificação aprovou a resposta e listou como alertas os detalhes sem fonte.
+2. **"E se tirarmos o Bruno da sprint, o plano ainda cabe?"** Sem repetir projeto, sprint ou plano, o agente recalculou a capacidade (o saldo cai para 9) e concluiu que o plano não cabe, porque faltam 2 pontos. Também propôs alternativas. O primeiro rascunho foi **reprovado** pelo verificador e **corrigido automaticamente**, e a versão final foi aprovada com "nenhuma falha" de coerência.
+3. **"Ok, mantemos o Bruno. Registre o plano completo na sprint 13 e abra as issues."** O agente criou uma pendência, e nada foi gravado antes da aprovação. Depois do clique em **Aprovar e gravar**, o sistema gravou as 3 histórias no backlog e abriu as issues reais [#1](https://github.com/DriccoC/fabrica-agentica-sandbox/issues/1), [#2](https://github.com/DriccoC/fabrica-agentica-sandbox/issues/2) e [#3](https://github.com/DriccoC/fabrica-agentica-sandbox/issues/3) no repositório `DriccoC/fabrica-agentica-sandbox`, com o rótulo `tech-lead-agentico`. Em seguida, o backlog foi restaurado.
+
+**Efeito observado depois da sessão.** Logo depois, no notebook 5, o mesmo pedido de planejamento passou a citar as issues #1 a #3 e a alertar para o risco de duplicação. Na versão LangGraph, o agente não chegou a pedir o registro: preferiu perguntar ao usuário como seguir. Só depois da escolha ("registre só no backlog, sem abrir issue") o grafo chegou a `registrar_no_backlog` e **pausou** à espera da aprovação, com o `HumanInTheLoopMiddleware`. O agente consulta o estado real antes de agir, que é o comportamento esperado de um tech lead.
+
+![Ferramentas sendo chamadas durante o turno 1](capturas/01_ferramentas_em_execucao.png)
+
+![Resposta do planejamento](capturas/02_resposta_planejamento.png)
+
+![Trajetória do turno 1](capturas/03_trajetoria.png)
+
+![Painel de verificação: coerência e alertas](capturas/04_verificacao.png)
+
+![Memória entre turnos: simulação sem o Bruno](capturas/05_memoria_turno_bruno.png)
+
+![Autocorreção: verificação final e rascunho reprovado](capturas/06_autocorrecao.png)
+
+![Aprovação humana antes da ação](capturas/07_aprovacao_humana.png)
+
+![Aprovado: histórias gravadas e issues abertas](capturas/08_aprovado_issues.png)
 
 
 # 5. Limitações e melhorias
@@ -126,8 +172,9 @@ Dataset `tech-lead-agentico-avaliacao-v1` com 19 casos em 10 categorias (planeja
 
 - Notebooks `01` a `05` executados com Claude, com saídas salvas.
 - Logs JSONL das execuções em `logs/execucoes.jsonl`.
-- LangSmith: projeto `tech-lead-agentico` (traces) e experimentos `tech-lead-com-transformacao` e `tech-lead-sem-transformacao` sobre o dataset `tech-lead-agentico-avaliacao-v1`.
-- Capturas da interface em `relatorio/capturas/`.
+- LangSmith: projeto `tech-lead-agentico` (traces) e experimentos `tech-lead-com-transformacao`, `tech-lead-sem-transformacao` e `tech-lead-pos-correcao` sobre o dataset `tech-lead-agentico-avaliacao-v1`; resultados em `relatorio/avaliacao/` (CSVs e `resumo.json`).
+- Issues reais abertas pelo agente após aprovação humana: `DriccoC/fabrica-agentica-sandbox`, #1 a #3.
+- Capturas da interface em `relatorio/capturas/` (seção 4.5).
 - Testes automatizados: `pytest` (30 testes, modo demonstração).
 
 # 7. Uso de inteligência artificial
