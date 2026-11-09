@@ -8,7 +8,9 @@ Registros no backlog e issues no GitHub só acontecem depois do clique em "Aprov
 
 from __future__ import annotations
 
+import base64
 import json
+from pathlib import Path
 
 import pandas as pd
 import streamlit as st
@@ -59,10 +61,16 @@ with st.sidebar:
     with st.expander("🧠 Memória de longo prazo"):
         for m in st.session_state.agente.memoria_longa.listar():
             st.markdown(f"- `{m['tipo']}` {m['conteudo']}")
+    logo = Path(__file__).parent / "assets" / "infnet_logo.png"
+    logo_html = (
+        f"<img src='data:image/png;base64,{base64.b64encode(logo.read_bytes()).decode()}' width='56' "
+        "style='margin:8px 0 4px; background:white; border-radius:50%; padding:2px'><br>"
+        if logo.exists() else "<br>"
+    )
     st.markdown(
         "<br>" * 3
         + "<div style='font-size:0.85em; opacity:0.75; text-align:center'>©2026 Adriano de Carvalho<br><br>"
-        "MBA - Engenharia de IA<br>Instituto Infnet</div>",
+        f"MBA - Engenharia de IA<br>{logo_html}Instituto Infnet</div>",
         unsafe_allow_html=True,
     )
 
