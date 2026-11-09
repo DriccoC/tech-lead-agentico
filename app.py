@@ -69,8 +69,8 @@ with st.sidebar:
     )
     st.markdown(
         "<br>" * 3
-        + "<div style='font-size:0.85em; opacity:0.75; text-align:center'>©2026 Adriano de Carvalho<br><br>"
-        f"MBA - Engenharia de IA<br>{logo_html}Instituto Infnet</div>",
+        + "<div style='font-size:0.85em; opacity:0.75; text-align:center'>"
+        f"MBA - Engenharia de IA<br>{logo_html}Instituto Infnet<br><br>©2026 Adriano de Carvalho</div>",
         unsafe_allow_html=True,
     )
 
