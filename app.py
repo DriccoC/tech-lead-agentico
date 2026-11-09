@@ -59,6 +59,12 @@ with st.sidebar:
     with st.expander("🧠 Memória de longo prazo"):
         for m in st.session_state.agente.memoria_longa.listar():
             st.markdown(f"- `{m['tipo']}` {m['conteudo']}")
+    st.markdown(
+        "<br>" * 5
+        + "<div style='font-size:0.85em; opacity:0.75'>©2026 Adriano de Carvalho<br><br>"
+        "MBA Engenharia de IA<br>Instituto Infnet</div>",
+        unsafe_allow_html=True,
+    )
 
 aquecer_modelos()
 agente = st.session_state.agente
