@@ -4,6 +4,15 @@ Projeto de disciplina **Agentes Cognitivos com LangChain** (MBA em Engenharia de
 
 Um agente único que transforma demandas em linguagem natural em **planos de trabalho verificados** (épico → histórias com critérios Gherkin → tarefas), consultando a capacidade da sprint, o Manual de Engenharia, bibliotecas (PyPI/OSV), issues (GitHub) e feriados (BrasilAPI), com memória de curto e longo prazo, verificação automática das respostas (NLI + coerência lógica) e avaliação no LangSmith. Empresa e dados são **fictícios** (NovaForja Software). Na próxima disciplina, este agente será o orquestrador de outros agentes da fábrica.
 
+## Documentação
+
+| Documento | Conteúdo |
+|---|---|
+| [Manual do usuário](MANUAL_DO_AGENTE.md) | Como usar a interface web (cada botão, campo e painel) e o passo a passo do processamento de uma mensagem, do envio à aprovação |
+| [Estrutura do projeto](ESTRUTURA_DO_PROJETO.md) | Todas as pastas e arquivos: finalidade, tipo, tecnologia e quando são usados |
+| [Estrutura de dados](ESTRUTURA_DE_DADOS.md) | Bancos SQLite (tabelas e colunas), índice FAISS, esquemas Pydantic e arquivos de registro, com a etapa do processamento em que cada um é usado |
+| [Relatório (PDF)](relatorio/adriano_carvalho_ai-agents_langchain-agents.pdf) | Decisões fase a fase, resultados, avaliação e limitações |
+
 ## Estrutura
 
 ```
@@ -22,6 +31,7 @@ dados/                 # backlog.db, manual/ (MAN-01..07), indice_faiss/ (índic
 scripts/               # criar_banco.py, construir_indice.py, rodar_avaliacao.py
 notebooks/             # 01 a 05: evidências de cada fase (executados com Claude)
 app.py                 # interface Streamlit
+assets/                # imagens da interface (logomarca)
 tests/                 # pytest (modo demo)
 relatorio/             # relatório, capturas e resultados da avaliação
 ```
