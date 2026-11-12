@@ -20,7 +20,7 @@ import json
 import time
 import uuid
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import Any, Callable, Optional
 
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from langchain_core.runnables.history import RunnableWithMessageHistory
@@ -102,6 +102,7 @@ class TechLeadAgentico:
         self.verificar_respostas = verificar_respostas
         self.gravar_memorias = gravar_memorias
         self.callbacks = callbacks or []
+        self.ao_progresso: Optional[Callable[[str], None]] = None  # recebe a chave de cada etapa (ver observabilidade/progresso.py)
         self.memoria_longa = MemoriaLongoPrazo(escopo=usuario)
         self.historico = HistoricoSQLite(self.sessao_id)
         self.estado: dict = {}
@@ -116,9 +117,17 @@ class TechLeadAgentico:
             self.agente = criar_executor_com_historico()
 
     # ------------------------------------------------------------------ ciclo do turno
+    def _avisar(self, etapa: str) -> None:
+        if self.ao_progresso:
+            try:
+                self.ao_progresso(etapa)
+            except Exception:  # o aviso de progresso nunca pode derrubar o turno
+                pass
+
     def conversar(self, mensagem: str) -> TurnoIntegrado:
         inicio = time.perf_counter()
         ultima = self.turnos[-1].resposta if self.turnos else ""
+        self._avisar("entender")
         reconhecido = fluxo.reconhecer(mensagem, self.estado, ultima)
         if self.intencao_pendente and reconhecido.intencao == "conversa_geral":
             reconhecido.intencao = self.intencao_pendente
@@ -127,17 +136,21 @@ class TechLeadAgentico:
 
         perguntas = fluxo.lacunas(reconhecido.intencao, self.estado)
         if perguntas:
+            self._avisar("esclarecer")
             resposta = " ".join(perguntas)
             self.intencao_pendente = reconhecido.intencao
             self.historico.add_user_message(mensagem)
             self.historico.add_ai_message(resposta)
             turno = TurnoIntegrado(mensagem, resposta, self.motor, reconhecido.intencao, dict(self.estado), pediu_esclarecimento=True)
+            turno.duracao_s = round(time.perf_counter() - inicio, 1)
             self.turnos.append(turno)
             return turno
 
+        self._avisar("lembrar")
         memorias = self.memoria_longa.recuperar(f"{mensagem} {' '.join(str(v) for v in self.estado.values())}", k=4)
         texto_memorias = MemoriaLongoPrazo.formatar(memorias)
         contexto = f"intenção atual: {reconhecido.intencao}; entidades acumuladas: {self.estado}"
+        self._avisar("decidir")
 
         if self.motor == "langgraph":
             entrada = f"{mensagem}\n\n[Contexto da sessão: {contexto}]\n[Memórias de longo prazo: {texto_memorias}]"
@@ -162,16 +175,20 @@ class TechLeadAgentico:
         self.evidencias_sessao = list(dict.fromkeys(self.evidencias_sessao + novas))
         if self.verificar_respostas and self.evidencias_sessao and rascunho and (passos or reconhecido.intencao != "conversa_geral"):
             evidencias = self.evidencias_sessao + ev.regras_procedurais() + [f"Memória de sessão anterior: {m.conteudo}" for m in memorias]
+            self._avisar("verificar")
             relatorio = verificar(rascunho, evidencias)
             turno.verificacao = turno.verificacao_rascunho = relatorio
             if not relatorio.aprovado:
+                self._avisar("corrigir")
                 corrigida = corrigir_resposta(rascunho, evidencias, relatorio, mensagem)
+                self._avisar("reverificar")
                 turno.verificacao = verificar(corrigida, evidencias)
                 turno.resposta, turno.corrigida = corrigida, True
                 if self.motor == "executor":
                     self.historico.substituir_ultima_resposta(corrigida)
 
         if self.gravar_memorias and turno.resposta:
+            self._avisar("aprender")
             self.memoria_longa.extrair_e_gravar(mensagem, turno.resposta)
         turno.duracao_s = round(time.perf_counter() - inicio, 1)
         self.turnos.append(turno)

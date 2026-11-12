@@ -10,10 +10,12 @@ from __future__ import annotations
 
 import base64
 import json
+import threading
 from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+from streamlit.runtime.scriptrunner import add_script_run_ctx, get_script_run_ctx
 
 from fabrica_agentica.config import descrever_ambiente, modo_demo, provedor
 
@@ -149,25 +151,65 @@ def painel_turno(turno: dict, indice: int) -> None:
 st.header("Planeje demandas, consulte o backlog, normas e bibliotecas")
 st.caption(f"Provedor: **{provedor()}** · motor: **{motor}** · verificação: **{'ligada' if verificar else 'desligada'}**")
 
+def painel_etapas(turno: dict) -> None:
+    """Etapas executadas no turno, recolhidas (o painel ao vivo some no rerun; este fica no histórico)."""
+    etapas = turno.get("etapas") or []
+    if etapas:
+        with st.status(f"Concluído em {turno.get('duracao_s')}s · {len(etapas)} etapas", state="complete", expanded=False):
+            for texto in etapas:
+                st.markdown(f":gray[{texto}] ✓")
+
+
 for i, (papel, texto, turno) in enumerate(st.session_state.mensagens):
     with st.chat_message(papel):
+        if turno:
+            painel_etapas(turno)
         st.markdown(texto)
         if turno:
             painel_turno(turno, i)
 
-if pergunta := st.chat_input("Ex.: Quero login com Google no projeto Portal na próxima sprint."):
+if pergunta := st.chat_input("Ex.: Quero login com Google (Google Identity Services) no projeto Portal na próxima sprint."):
     st.session_state.mensagens.append(("user", pergunta, None))
     with st.chat_message("user"):
         st.markdown(pergunta)
     with st.chat_message("assistant"):
-        from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
+        from fabrica_agentica.observabilidade.progresso import ETAPAS, ProgressoCallback
 
-        agente.callbacks = [StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)]
-        with st.spinner("Pensando, consultando ferramentas e verificando a resposta..."):
+        # Painel de progresso: cada etapa e cada ferramenta aparece em linguagem natural, ao vivo.
+        painel = st.status("Trabalhando na sua demanda...", expanded=True)
+        linhas: list = []  # (espaço reservado na tela, texto da etapa)
+
+        def concluir_ultima() -> None:
+            if linhas:
+                espaco, texto = linhas[-1]
+                espaco.markdown(f":gray[{texto}] ✓")
+
+        contexto_pagina = get_script_run_ctx()
+
+        def avisar(texto: str) -> None:
+            # O LangGraph executa as ferramentas numa thread de trabalho; sem o contexto da página,
+            # o Streamlit descarta em silêncio o que essa thread escreve.
+            if get_script_run_ctx() is None and contexto_pagina is not None:
+                add_script_run_ctx(threading.current_thread(), contexto_pagina)
+            concluir_ultima()
+            espaco = painel.empty()
+            espaco.markdown(f"**{texto}…**")
+            linhas.append((espaco, texto))
+            painel.update(label=f"{texto}…", expanded=True)  # sem expanded, o update recolhe o painel
+
+        agente.ao_progresso = lambda etapa: avisar(ETAPAS.get(etapa, etapa))
+        agente.callbacks = [ProgressoCallback(avisar)]
+        try:
             turno = agente.conversar(pergunta)
+        except Exception:
+            painel.update(label="Falha ao processar a demanda", state="error")
+            raise
+        concluir_ultima()
+        painel.update(label=f"Concluído em {turno.duracao_s}s · {len(linhas)} etapas", state="complete", expanded=False)
         from fabrica_agentica.agentes.integrador import turno_como_dict
 
         dados = turno_como_dict(turno)
+        dados["etapas"] = [texto for _, texto in linhas]
         st.markdown(turno.resposta)
         st.caption(f"⏱️ {turno.duracao_s}s")
         painel_turno(dados, len(st.session_state.mensagens))

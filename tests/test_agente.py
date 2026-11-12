@@ -118,3 +118,51 @@ def test_agente_integrador_modo_demo(tmp_path, monkeypatch):
     assert "calcular_capacidade_sprint" in turno.ferramentas and "14" in turno.resposta
     assert turno.verificacao is not None and turno.verificacao.aprovado
     assert json.loads(json.dumps(turno.trajetoria, default=str))
+
+
+def test_progresso_amigavel_no_modo_demo(tmp_path, monkeypatch):
+    from fabrica_agentica.memoria import historico, longo_prazo
+    from fabrica_agentica.observabilidade.progresso import ETAPAS, ProgressoCallback, mensagem_ferramenta
+
+    assert "feriados" in mensagem_ferramenta("calcular_capacidade_sprint", {"projeto": "Portal", "numero_sprint": 13})
+    assert "pyjwt 2.8.0" in mensagem_ferramenta("consultar_vulnerabilidades", {"pacote": "pyjwt", "versao": "2.8.0"})
+
+    monkeypatch.setattr(historico, "CAMINHO_HISTORICO", tmp_path / "h.db")
+    monkeypatch.setattr(longo_prazo, "CAMINHO_MEMORIA", tmp_path / "m.db")
+    from fabrica_agentica.agentes.integrador import TechLeadAgentico
+
+    avisos: list[str] = []
+    agente = TechLeadAgentico(usuario="pytest", gravar_memorias=False)
+    agente.ao_progresso = lambda etapa: avisos.append(ETAPAS[etapa])
+    agente.callbacks = [ProgressoCallback(avisos.append)]
+    agente.conversar("Qual o saldo de pontos da sprint 13 do Portal?")
+    texto = " | ".join(avisos)
+    assert avisos[0] == ETAPAS["entender"] and "Calculando a capacidade da sprint 13 do Portal" in texto
+    assert texto.index("Calculando") < texto.index("Verificando a resposta")
+
+
+def test_progresso_langgraph_e_duracao_do_esclarecimento(tmp_path, monkeypatch):
+    """No LangGraph o aviso de ferramenta vem de outra thread (a interface reanexa o contexto); aqui
+    garantimos que ele é disparado. E o turno de esclarecimento precisa registrar a duração."""
+    from fabrica_agentica.memoria import historico, longo_prazo
+    from fabrica_agentica.observabilidade.progresso import ProgressoCallback
+
+    monkeypatch.setattr(historico, "CAMINHO_HISTORICO", tmp_path / "h.db")
+    monkeypatch.setattr(longo_prazo, "CAMINHO_MEMORIA", tmp_path / "m.db")
+    from fabrica_agentica.agentes.integrador import TechLeadAgentico
+
+    avisos: list[str] = []
+    agente = TechLeadAgentico(usuario="pytest-lg", motor="langgraph", gravar_memorias=False)
+    agente.callbacks = [ProgressoCallback(avisos.append)]
+    agente.conversar("Qual o saldo de pontos da sprint 13 do Portal?")
+    assert any("Calculando a capacidade" in a for a in avisos)
+
+    import itertools
+
+    from fabrica_agentica.agentes import integrador
+
+    novo = TechLeadAgentico(usuario="pytest-esc", gravar_memorias=False)
+    relogio = itertools.count(0, 1.5)  # cada leitura do relógio avança 1,5 s (no modo demo o turno é instantâneo)
+    monkeypatch.setattr(integrador.time, "perf_counter", lambda: next(relogio))
+    turno = novo.conversar("Quero modo escuro.")
+    assert turno.pediu_esclarecimento and turno.duracao_s > 0
