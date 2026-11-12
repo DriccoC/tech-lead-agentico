@@ -20,7 +20,6 @@ projeto_fabrica_agentica/
 ├── .env.example                 modelo do .env, sem segredos
 ├── .gitignore                   lista do que o Git deve ignorar
 ├── README.md                    apresentação e passo a passo
-├── ESTRUTURA_DO_PROJETO.md      este guia
 ├── requirements.txt             lista de bibliotecas Python
 ├── app.py                       interface web (Streamlit)
 ├── assets/                      imagens da interface
@@ -42,7 +41,9 @@ projeto_fabrica_agentica/
 │   ├── observabilidade/         logs e avaliação LangSmith
 │   └── demo/                    modo demonstração (sem chave, sem custo)
 │       └── fixtures/            respostas gravadas das APIs
-├── notebooks/                   evidências de cada fase (01 a 05)
+├── notebooks_doc/               evidências de cada fase e documentação
+│   ├── 01_fase1_chain_mvp.ipynb … 05_fase5_integrador.ipynb
+│   └── manual_agente.md · estrutura_projeto.md (este guia) · estrutura_dados.md
 ├── scripts/                     utilitários executados à parte
 ├── tests/                       testes automatizados (pytest)
 ├── relatorio/                   relatório final, PDF, capturas e resultados
@@ -63,7 +64,6 @@ projeto_fabrica_agentica/
 | `.env.example` | Texto `CHAVE=valor` | Modelo do `.env` **sem os valores**, com comentários explicando cada variável. Quem baixar o projeto copia para `.env` e preenche. | ✅ |
 | `.gitignore` | Texto, padrão do **Git** | Lista do que o Git **não** deve enviar: `.env`, `.venv/`, `logs/`, bancos gerados no uso (`memoria.db`, `historico_conversas.db`, `checkpoints.db`), caches. É a proteção contra vazar chaves por engano. | ✅ |
 | `README.md` | **Markdown** (texto com formatação leve: `#` títulos, `|` tabelas) | Porta de entrada do repositório: o que é o projeto, estrutura, passo a passo no VS Code, como executar, modo demonstração, segurança, **mapa rubrica → evidência** e declaração do uso de IA. O GitHub o exibe na página inicial. | ✅ |
-| `ESTRUTURA_DO_PROJETO.md` | Markdown | Este guia. | — |
 
 ### Pastas ocultas da raiz (começam com ponto)
 
@@ -222,6 +222,7 @@ Todos os arquivos `.py` são **código Python 3.12** e estão versionados ✅.
 | Arquivo | Tecnologia | Responsabilidade | Quando é usado |
 |---|---|---|---|
 | `callbacks.py` | Callbacks do LangChain + **JSON Lines** | `RegistroExecucao`: grava em `logs/execucoes.jsonl` cada chamada ao LLM e a ferramentas, com duração, tokens e erros. Funciona sem internet e alimenta a "trajetória" da interface. | Em todas as execuções. |
+| `progresso.py` | Callback do LangChain | Mensagens de progresso em linguagem natural: `ProgressoCallback` traduz cada ferramenta chamada numa frase (ex.: "📅 Calculando a capacidade da sprint 13 do Portal") e `ETAPAS` nomeia as etapas do turno (entender, lembrar, verificar, corrigir, aprender). Não depende do Streamlit. | No painel de progresso da interface, a cada mensagem. |
 | `avaliacao.py` | **LangSmith** (`evaluate`, datasets) | Dataset com **19 casos** e os avaliadores: cobertura de trajetória, trajetória exata, corretude (juiz LLM com saída estruturada) e taxas do verificador. Tem versão LangSmith e versão local (CSV). | Por `scripts/rodar_avaliacao.py` e no notebook 5. |
 
 ### `fabrica_agentica/demo/` — modo demonstração
@@ -248,7 +249,7 @@ Todos os arquivos `.py` são **código Python 3.12** e estão versionados ✅.
 
 ---
 
-## 4. `notebooks/` — evidências por fase
+## 4. `notebooks_doc/` — evidências por fase e documentação
 
 **Finalidade:** a **evidência executável** de cada fase da rubrica, com texto explicativo, código e as saídas reais já gravadas. **Responsabilidade:** demonstrar cada requisito e registrar os resultados (inclusive as falhas e suas correções).
 
@@ -261,6 +262,9 @@ Todos os arquivos `.py` são **código Python 3.12** e estão versionados ✅.
 | `03_fase3_memoria_chatbot.ipynb` | Estratégia de memória CoALA; janela + resumo; memória longa vetorial; LangMem × Mem0 × Letta; intenção e entidades; conversa multiturno ("e se tirarmos o Bruno?"). | ✅ |
 | `04_fase4_ferramentas_rag.ipynb` | Ferramentas por tipo; text-to-query com guardrails; RAG sobre o índice existente; **falha real diagnosticada** pelos scores e corrigida com reescrita/multi-query/HyDE (antes × depois). | ✅ |
 | `05_fase5_integrador.ipynb` | Verificador NLI; agente integrador; versão LangGraph com aprovação humana; avaliação LangSmith (experimentos A, B e C) e conclusões. É o maior (1,9 MB) por guardar todas as saídas. | ✅ |
+| `manual_agente.md` | Manual do usuário: cada botão, campo e painel da interface e o passo a passo do processamento de uma mensagem. | ✅ |
+| `estrutura_projeto.md` | Este guia: todas as pastas e arquivos, com finalidade, tipo e tecnologia. | ✅ |
+| `estrutura_dados.md` | Bancos SQLite, índice FAISS, esquemas Pydantic e arquivos de registro. | ✅ |
 
 ---
 

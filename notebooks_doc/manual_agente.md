@@ -60,7 +60,7 @@ Este manual explica como usar o **Tech Lead Agêntico** pela interface web: o qu
 │ > 🧠 Memória de longo prazo  │                                                    │
 │                              │                                                    │
 │   MBA - Engenharia de IA     │ ┌────────────────────────────────────────────┐    │
-│      [logo Infnet]           │ │ Ex.: Quero login com Google no projeto ... │ ➤  │
+│      [logo Infnet]           │ │ Ex.: Quero login com Google (Google Ide... │ ➤  │
 │   Instituto Infnet           │ └────────────────────────────────────────────┘    │
 │   ©2026 Adriano de Carvalho  │                                                    │
 └──────────────────────────────┴────────────────────────────────────────────────────┘
@@ -199,7 +199,7 @@ Não fazem parte do agente; são do Streamlit, a ferramenta que gera a página.
 
 ### 4.2 Campo de mensagem e botão enviar (➤)
 
-- **Campo:** fica no rodapé da área principal, com o exemplo *"Ex.: Quero login com Google no projeto Portal na próxima sprint."*.
+- **Campo:** fica no rodapé da área principal, com o exemplo *"Ex.: Quero login com Google (Google Identity Services) no projeto Portal na próxima sprint."*.
 - **Enviar:** pressione **Enter** ou clique em **➤**.
 - Escreva como falaria com um colega: não é preciso usar comandos nem palavras-chave.
 
@@ -208,8 +208,16 @@ Não fazem parte do agente; são do Streamlit, a ferramenta que gera a página.
 Logo após o envio:
 
 1. sua mensagem aparece com o ícone 👤;
-2. surge a mensagem do agente 🤖 com o aviso **"Pensando, consultando ferramentas e verificando a resposta..."**;
-3. **as ferramentas aparecem ao vivo**, uma por uma, em blocos recolhíveis (ex.: `calcular_capacidade_sprint`, `buscar_manual_engenharia`). Clique em um bloco para ver o que foi enviado à ferramenta e o que ela devolveu;
+2. surge a mensagem do agente 🤖 com um **painel de progresso**. O título do painel mostra a etapa em andamento, e cada etapa aparece **ao vivo**, em linguagem natural, marcada com ✓ quando termina. Por exemplo:
+   - 🧭 Entendendo o pedido (intenção e entidades)
+   - 🧠 Lembrando o contexto (memórias de longo prazo)
+   - 📅 Calculando a capacidade da sprint 13 do Portal (equipe, folgas e feriados da BrasilAPI)
+   - 📘 Buscando no Manual de Engenharia: "…"
+   - 📦 Consultando a versão mais recente de authlib no PyPI · 🔐 Checando vulnerabilidades na base OSV
+   - ✍️ Criando o épico, as histórias (critérios Gherkin) e as tarefas
+   - 🛡️ Verificando a resposta (fatos, NLI e coerência lógica) e, se reprovada, ↻ corrigindo a resposta
+   - 💾 Guardando decisões e preferências na memória
+3. ao final, o painel se recolhe com o resumo **"Concluído em X s · N etapas"** e continua na conversa: clique nele para rever as etapas. Os nomes técnicos e os argumentos de cada ferramenta ficam no painel **🔧 Trajetória**;
 4. no canto superior direito aparece **Stop**.
 
 Uma pergunta simples leva poucos segundos. Um planejamento completo (várias ferramentas + verificação) pode levar **um a dois minutos**.
@@ -262,7 +270,7 @@ Se o agente respondeu sem consultar nada, o painel diz *"Nenhuma ferramenta usad
 
 Esta seção acompanha, etapa por etapa, o processamento do exemplo:
 
-> **"Quero login com Google no projeto Portal na próxima sprint."**
+> **"Quero login com Google (Google Identity Services) no projeto Portal na próxima sprint."**
 
 ### Fluxo resumido
 
@@ -307,7 +315,7 @@ Esta seção acompanha, etapa por etapa, o processamento do exemplo:
 ### Etapa 0 — A interface recebe a mensagem
 
 - A mensagem é exibida na conversa.
-- A interface conecta um "observador" (`StreamlitCallbackHandler`) ao agente: é ele que faz as ferramentas aparecerem **ao vivo** na tela.
+- A interface conecta ao agente o painel de progresso (`fabrica_agentica/observabilidade/progresso.py`): um "observador" (`ProgressoCallback`) traduz cada ferramenta chamada numa frase, e o próprio agente avisa as demais etapas (entender, lembrar, verificar, corrigir, aprender) pelo atributo `ao_progresso`. É isso que faz as etapas aparecerem **ao vivo** na tela.
 - Outro observador grava cada passo em `logs/execucoes.jsonl` (horário, duração, tokens) e, se ligado, no **LangSmith**.
 
 ### Etapa 1 — Entender o pedido (intenção e entidades)
@@ -535,7 +543,7 @@ A gravação está em um código separado, **ao qual o modelo não tem acesso**:
 
 | Objetivo | Pergunta | Ferramentas típicas |
 |---|---|---|
-| Planejar uma demanda | *Quero login com Google no projeto Portal na próxima sprint.* | capacidade, manual, PyPI, OSV, GitHub, decompor |
+| Planejar uma demanda | *Quero login com Google (Google Identity Services) no projeto Portal na próxima sprint.* | capacidade, manual, PyPI, OSV, GitHub, decompor |
 | Simular mudança na equipe | *E se tirarmos o Bruno da sprint?* | capacidade (sem o Bruno) |
 | Capacidade | *Cabe mais uma história de 8 pontos na sprint 13 do Portal?* | capacidade |
 | Backlog | *Quais bugs de severidade alta ou crítica estão abertos ou em correção?* | SQL |
@@ -594,4 +602,4 @@ A gravação está em um código separado, **ao qual o modelo não tem acesso**:
 
 Para restaurar o backlog original da empresa fictícia: `python scripts/criar_banco.py`.
 
-Para a descrição de todos os arquivos do projeto, consulte o [ESTRUTURA_DO_PROJETO.md](ESTRUTURA_DO_PROJETO.md).
+Para a descrição de todos os arquivos do projeto, consulte o [estrutura_projeto.md](estrutura_projeto.md).

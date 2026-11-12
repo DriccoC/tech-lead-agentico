@@ -2,7 +2,7 @@
 
 Este documento descreve **todas as estruturas de dados** usadas pelo agente: os bancos SQL (tabelas, colunas e relacionamentos), o índice vetorial do RAG, os formatos estruturados que circulam durante o processamento e os arquivos de registro. Para cada estrutura, explica **para que serve** e **em que etapa do processamento** é usada.
 
-> As etapas citadas (1 a 10 e 6.x) são as do [MANUAL_DO_AGENTE.md](MANUAL_DO_AGENTE.md), seção 5 ("O que acontece quando você envia uma mensagem") e seção 6 ("Registrar no backlog"). Todos os dados são da empresa **fictícia** NovaForja Software.
+> As etapas citadas (1 a 10 e 6.x) são as do [manual_agente.md](manual_agente.md), seção 5 ("O que acontece quando você envia uma mensagem") e seção 6 ("Registrar no backlog"). Todos os dados são da empresa **fictícia** NovaForja Software.
 
 ---
 
@@ -394,7 +394,7 @@ Tabela **interna do SQLite**, criada automaticamente quando uma tabela usa `AUTO
 **Formato da coluna `mensagem`:**
 ```json
 {"type": "human",
- "data": {"content": "Quero login com Google no projeto Portal na próxima sprint.",
+ "data": {"content": "Quero login com Google (Google Identity Services) no projeto Portal na próxima sprint.",
           "additional_kwargs": {}, "response_metadata": {}, "type": "human"}}
 ```
 
