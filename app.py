@@ -11,6 +11,7 @@ from __future__ import annotations
 import base64
 import json
 import threading
+import traceback
 from pathlib import Path
 
 import pandas as pd
@@ -38,23 +39,31 @@ def novo_agente(usuario: str, motor: str, verificar: bool):
     return TechLeadAgentico(usuario=usuario, motor=motor, verificar_respostas=verificar)
 
 
+# Enquanto o agente processa uma pergunta, a interface fica bloqueada: no Streamlit, qualquer envio ou
+# clique reinicia o script e abortaria o turno no meio (a pergunta ficaria sem resposta).
+processando = bool(st.session_state.get("pergunta_pendente"))
+
 # ------------------------------------------------------------------ barra lateral
 with st.sidebar:
     st.title("🛠️ Tech Lead Agêntico")
     st.caption("1º agente da fábrica agêntica de software · NovaForja (empresa fictícia)")
     if modo_demo():
         st.warning("Modo demonstração: modelo roteirizado, sem chave de API e sem custo.")
-    usuario = st.text_input("Usuário (escopo da memória de longo prazo)", value="adriano")
+    usuario = st.text_input("Usuário (escopo da memória de longo prazo)", value="adriano", disabled=processando)
     motor = st.radio("Motor do agente", ["executor", "langgraph"], format_func={
-        "executor": "AgentExecutor + RunnableWithMessageHistory", "langgraph": "LangGraph (create_agent + HITL)"}.get)
-    verificar = st.toggle("Verificar respostas (NLI + coerência)", value=True)
+        "executor": "AgentExecutor + RunnableWithMessageHistory", "langgraph": "LangGraph (create_agent + HITL)"}.get,
+        disabled=processando)
+    verificar = st.toggle("Verificar respostas (NLI + coerência)", value=True, disabled=processando)
     configuracao = (usuario, motor, verificar)
+    # "Nova sessão" continua ativo durante o processamento: é a saída de emergência para recomeçar.
     if st.button("🆕 Nova sessão", use_container_width=True) or st.session_state.get("configuracao") != configuracao:
         st.session_state.configuracao = configuracao
         st.session_state.agente = novo_agente(*configuracao)
         st.session_state.mensagens = []
         st.session_state.decisoes = {}
-    if st.button("💾 Encerrar sessão (gravar episódio)", use_container_width=True):
+        st.session_state.pergunta_pendente = None
+        processando = False
+    if st.button("💾 Encerrar sessão (gravar episódio)", use_container_width=True, disabled=processando):
         episodio = st.session_state.agente.encerrar_sessao()
         st.success(f"Episódio gravado: {episodio['conteudo'] if episodio else 'sessão vazia'}")
     with st.expander("⚙️ Ambiente"):
@@ -132,7 +141,7 @@ def painel_turno(turno: dict, indice: int) -> None:
                     st.info(decisao)
             else:
                 c1, c2 = st.columns(2)
-                if c1.button("✅ Aprovar e gravar", key=f"ok-{chave}"):
+                if c1.button("✅ Aprovar e gravar", key=f"ok-{chave}", disabled=processando):
                     with st.spinner("Gravando no backlog e abrindo issues..."):
                         r = agente.aprovar(pendencia, aprovado_por=usuario)
                     issues = r.get("issues") if isinstance(r, dict) else None
@@ -141,7 +150,7 @@ def painel_turno(turno: dict, indice: int) -> None:
                         texto += " · issues: " + ", ".join(f"[#{i['numero']}]({i['url']})" if str(i.get("url", "")).startswith("http") else f"#{i['numero']} ({i.get('modo')})" for i in issues)
                     st.session_state.decisoes[chave] = texto
                     st.rerun()
-                if c2.button("❌ Rejeitar", key=f"no-{chave}"):
+                if c2.button("❌ Rejeitar", key=f"no-{chave}", disabled=processando):
                     agente.rejeitar(pendencia, "Rejeitado na interface.")
                     st.session_state.decisoes[chave] = "Rejeitado: nada foi gravado."
                     st.rerun()
@@ -168,16 +177,42 @@ for i, (papel, texto, turno) in enumerate(st.session_state.mensagens):
         if turno:
             painel_turno(turno, i)
 
-if pergunta := st.chat_input("Ex.: Quero login com Google (Google Identity Services) no projeto Portal na próxima sprint."):
+def aprovacao_langgraph_pendente() -> bool:
+    """No LangGraph o grafo fica PAUSADO até a decisão: uma nova mensagem não seria processada."""
+    for i, (_, _, turno) in enumerate(st.session_state.mensagens):
+        for j, pendencia in enumerate((turno or {}).get("pendencias", [])):
+            if pendencia.get("tipo") == "langgraph_hitl" and f"{i}-{j}" not in st.session_state.decisoes:
+                return True
+    return False
+
+
+bloqueada = True
+if processando:
+    aviso_entrada = "⏳ Aguarde: o agente está trabalhando na sua demanda..."
+elif aprovacao_langgraph_pendente():
+    aviso_entrada = "📝 Aprove ou rejeite o registro pendente acima para continuar a conversa."
+else:
+    aviso_entrada = "Ex.: Quero login com Google (Google Identity Services) no projeto Portal na próxima sprint."
+    bloqueada = False
+
+# O envio só registra a pergunta e reinicia a página; o processamento acontece no ciclo seguinte,
+# já com a caixa de texto e os botões desativados.
+if pergunta := st.chat_input(aviso_entrada, disabled=bloqueada):
     st.session_state.mensagens.append(("user", pergunta, None))
-    with st.chat_message("user"):
-        st.markdown(pergunta)
+    st.session_state.pergunta_pendente = pergunta
+    st.rerun()
+
+if processando:
+    pergunta = st.session_state.pergunta_pendente
+    desfecho = None  # "ok" | "erro" | None (turno interrompido)
     with st.chat_message("assistant"):
         from fabrica_agentica.observabilidade.progresso import ETAPAS, ProgressoCallback
 
         # Painel de progresso: cada etapa e cada ferramenta aparece em linguagem natural, ao vivo.
         painel = st.status("Trabalhando na sua demanda...", expanded=True)
         linhas: list = []  # (espaço reservado na tela, texto da etapa)
+        encerrado = threading.Event()  # depois do fim do turno, nenhuma thread escreve mais na página
+        trava = threading.Lock()  # ferramentas paralelas (LangGraph) não escrevem ao mesmo tempo
 
         def concluir_ultima() -> None:
             if linhas:
@@ -187,31 +222,40 @@ if pergunta := st.chat_input("Ex.: Quero login com Google (Google Identity Servi
         contexto_pagina = get_script_run_ctx()
 
         def avisar(texto: str) -> None:
+            if encerrado.is_set():
+                return
             # O LangGraph executa as ferramentas numa thread de trabalho; sem o contexto da página,
             # o Streamlit descarta em silêncio o que essa thread escreve.
             if get_script_run_ctx() is None and contexto_pagina is not None:
                 add_script_run_ctx(threading.current_thread(), contexto_pagina)
-            concluir_ultima()
-            espaco = painel.empty()
-            espaco.markdown(f"**{texto}…**")
-            linhas.append((espaco, texto))
-            painel.update(label=f"{texto}…", expanded=True)  # sem expanded, o update recolhe o painel
+            with trava:
+                concluir_ultima()
+                espaco = painel.empty()
+                espaco.markdown(f"**{texto}…**")
+                linhas.append((espaco, texto))
+                painel.update(label=f"{texto}…", expanded=True)  # sem expanded, o update recolhe o painel
 
         agente.ao_progresso = lambda etapa: avisar(ETAPAS.get(etapa, etapa))
         agente.callbacks = [ProgressoCallback(avisar)]
         try:
             turno = agente.conversar(pergunta)
-        except Exception:
-            painel.update(label="Falha ao processar a demanda", state="error")
-            raise
-        concluir_ultima()
-        painel.update(label=f"Concluído em {turno.duracao_s}s · {len(linhas)} etapas", state="complete", expanded=False)
-        from fabrica_agentica.agentes.integrador import turno_como_dict
+            desfecho = "ok"
+        except Exception as erro:  # falha do modelo, da rede ou de uma ferramenta: registra e libera a tela
+            traceback.print_exc()
+            desfecho = "erro"
+            st.session_state.mensagens.append(("assistant", f"⚠️ Não consegui processar a demanda ({type(erro).__name__}: "
+                                               f"{str(erro)[:300]}). Envie a mensagem de novo.", None))
+        finally:
+            encerrado.set()
+            st.session_state.pergunta_pendente = None
+            if desfecho is None:  # interrompido (botão Stop ou Nova sessão): a pergunta não fica órfã
+                st.session_state.mensagens.append(("assistant", "⚠️ Processamento interrompido antes da resposta. "
+                                                   "Envie a mensagem de novo.", None))
+        if desfecho == "ok":
+            concluir_ultima()
+            from fabrica_agentica.agentes.integrador import turno_como_dict
 
-        dados = turno_como_dict(turno)
-        dados["etapas"] = [texto for _, texto in linhas]
-        st.markdown(turno.resposta)
-        st.caption(f"⏱️ {turno.duracao_s}s")
-        painel_turno(dados, len(st.session_state.mensagens))
-    st.session_state.mensagens.append(("assistant", turno.resposta, dados))
+            dados = turno_como_dict(turno)
+            dados["etapas"] = [texto for _, texto in linhas]
+            st.session_state.mensagens.append(("assistant", turno.resposta, dados))
     st.rerun()

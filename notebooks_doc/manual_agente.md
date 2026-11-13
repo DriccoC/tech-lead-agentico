@@ -202,6 +202,10 @@ Não fazem parte do agente; são do Streamlit, a ferramenta que gera a página.
 - **Campo:** fica no rodapé da área principal, com o exemplo *"Ex.: Quero login com Google (Google Identity Services) no projeto Portal na próxima sprint."*.
 - **Enviar:** pressione **Enter** ou clique em **➤**.
 - Escreva como falaria com um colega: não é preciso usar comandos nem palavras-chave.
+- **Campo bloqueado:** o campo fica desativado em duas situações, e o texto dentro dele diz o motivo:
+  - *"⏳ Aguarde: o agente está trabalhando na sua demanda..."*: enquanto o agente processa a mensagem anterior. Os controles da barra lateral também ficam desativados, porque no Streamlit qualquer envio ou clique reiniciaria a página e interromperia a resposta no meio. Só o botão **🆕 Nova sessão** continua ativo, como saída de emergência;
+  - *"📝 Aprove ou rejeite o registro pendente acima para continuar a conversa."*: no motor LangGraph, quando há uma aprovação pendente. O grafo fica pausado até a decisão e não processaria uma nova mensagem.
+- Se o processamento falhar ou for interrompido, a conversa mostra um aviso ⚠️ no lugar da resposta e o campo volta a funcionar: basta enviar a mensagem de novo.
 
 ### 4.3 Durante o processamento
 
